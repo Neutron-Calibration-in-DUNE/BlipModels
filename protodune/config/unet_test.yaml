@@ -17,21 +17,24 @@ dataset:
   ]
 
   # Otherwise, we want to just load the resulting data
-  dataset_type:   "blip_unet"
+  dataset_type:   "voxel"
   dataset_files:  [
-    "data/blip_simulation_0/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_1/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_2/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_3/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_4/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_5/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_6/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_7/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_8/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_9/point_cloud_view0_tpc0.npz",
-    "data/blip_simulation_10/point_cloud_view0_tpc0.npz",
+    "data/blip_simulation_0/view0_tpc0.npz",
+    "data/blip_simulation_1/view0_tpc0.npz",
+    "data/blip_simulation_2/view0_tpc0.npz",
+    "data/blip_simulation_3/view0_tpc0.npz",
+    "data/blip_simulation_4/view0_tpc0.npz",
+    "data/blip_simulation_5/view0_tpc0.npz",
+    "data/blip_simulation_6/view0_tpc0.npz",
+    "data/blip_simulation_7/view0_tpc0.npz",
+    "data/blip_simulation_8/view0_tpc0.npz",
+    "data/blip_simulation_9/view0_tpc0.npz",
+    "data/blip_simulation_10/view0_tpc0.npz",
   ]
-  classes:        ["source", "shape", "particle"]
+  positions:  ["channel", "tdc"]
+  features:   ["adc"]
+  #classes:    ["source", "shape", "particle"]
+  classes:    ["shape"]
 
 loader:
   loader_type:      "minkowski"
@@ -63,8 +66,10 @@ model:
   # or a Composite.
   model_type:       "SparseUNet"  
   in_channels:      1
-  classifications:  ["source", "shape", "particle"]
-  out_channels:     [8, 7, 32]  
+  #classifications:  ["source", "shape", "particle"]
+  classifications:  ["shape"]
+  #out_channels:     [8, 7, 32]
+  out_channels:     [7]  
   filtrations:      [64, 128, 256, 512]    # the number of filters in each downsample
   double_conv_params:
     kernel_size:  3
@@ -90,8 +95,10 @@ criterion:
     
 metrics:
   confusion_matrix:
-    inputs: ["source", "shape", "particle"]
-    number_of_classes: [8, 7, 32]
+    #inputs: ["source", "shape", "particle"]
+    inputs: ["shape"]
+    #number_of_classes: [8, 7, 32]
+    number_of_classes:  [7]
 
 callbacks:
   loss:

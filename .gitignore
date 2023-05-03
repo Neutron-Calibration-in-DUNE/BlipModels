@@ -1,3 +1,11 @@
 *.csv
 *.npz
 *.root
+*.logs
+*.checkpoints
+*plots/
+*models/
+*runs/
+*predictions/
+*data/
+*processed/
