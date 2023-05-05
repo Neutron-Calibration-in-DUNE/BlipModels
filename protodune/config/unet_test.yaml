@@ -35,6 +35,15 @@ dataset:
   features:   ["adc"]
   #classes:    ["source", "shape", "particle"]
   classes:    ["shape"]
+  # we can regroup classes to reduce their number,
+  # e.g., say we want to train so that there are
+  # only two important shapes, "blip" and "not-blip",
+  # then we would consolidate like below:
+  consolidate_classes:  
+  #   shape:  [["blip"], ["track"], [""]]
+  
+  sample_weights: []
+  class_weights:  []
 
 loader:
   loader_type:      "minkowski"
@@ -66,11 +75,9 @@ model:
   # or a Composite.
   model_type:       "SparseUNet"  
   in_channels:      1
-  #classifications:  ["source", "shape", "particle"]
-  classifications:  ["shape"]
-  #out_channels:     [8, 7, 32]
-  out_channels:     [7]  
-  filtrations:      [64, 128, 256, 512]    # the number of filters in each downsample
+  classifications:  ["shape"]               # {"source", "shape", "particle"}
+  out_channels:     [7]                     # {8, 7, 32}
+  filtrations:      [64, 128, 256, 512]     # the number of filters in each downsample
   double_conv_params:
     kernel_size:  3
     stride:       1
