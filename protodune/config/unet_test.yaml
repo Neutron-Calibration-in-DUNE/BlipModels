@@ -33,8 +33,7 @@ dataset:
   ]
   positions:  ["channel", "tdc"]
   features:   ["adc"]
-  #classes:    ["source", "shape", "particle"]
-  classes:    ["shape"]
+  classes:    ["source", "shape", "particle"]
   # we can regroup classes to reduce their number,
   # e.g., say we want to train so that there are
   # only two important shapes, "blip" and "not-blip",
@@ -73,10 +72,10 @@ model:
   # multiple options for model_type: 
   # [ "SparseUNet", "PointNet", "UNet", ... ]
   # or a Composite.
-  model_type:       "SparseUNet"  
+  model_type:       "SparseUResNet"  
   in_channels:      1
-  classifications:  ["shape"]               # {"source", "shape", "particle"}
-  out_channels:     [7]                     # {8, 7, 32}
+  classifications:  ["source", "shape", "particle"]               # {"source", "shape", "particle"}
+  out_channels:     [8, 7, 32]                     # {8, 7, 32}
   filtrations:      [64, 128, 256, 512]     # the number of filters in each downsample
   double_conv_params:
     kernel_size:  3
@@ -97,15 +96,13 @@ model:
     dimension:    2
 
 criterion:
-  multiclass_nll_loss:
+  multiclass_ce_loss:
     alpha:  1.0
     
 metrics:
   confusion_matrix:
-    #inputs: ["source", "shape", "particle"]
-    inputs: ["shape"]
-    #number_of_classes: [8, 7, 32]
-    number_of_classes:  [7]
+    inputs: ["source", "shape", "particle"]
+    number_of_classes: [8, 7, 32]
 
 callbacks:
   loss:
