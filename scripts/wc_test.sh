@@ -2,7 +2,7 @@
 #SBATCH --job-name=blip_test
 #SBATCH --partition=gpu_gce
 #SBATCH --nodelist=wcgpu04
-#SBATCH --gres=gpu:4 
+#SBATCH --gres=gpu:1 
 
 SETUP_SCRIPT = /work1/davis_nc/Blip/scripts/wc_setup.sh
 BLIP_ENV = /wclustre/dune/ncarrara/blip
