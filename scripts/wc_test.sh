@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --job-name=blip_test
-#SBATCH --partition=gpu_pce
+#SBATCH --partition=gpu_gce
 #SBATCH --nodelist=wcgpu04
 #SBATCH --gres=gpu:4 
 
