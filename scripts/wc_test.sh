@@ -4,10 +4,10 @@
 #SBATCH --nodelist=wcgpu04
 #SBATCH --gres=gpu:1 
 
-SETUP_SCRIPT = /work1/davis_nc/Blip/scripts/wc_setup.sh
-BLIP_ENV = /wclustre/dune/ncarrara/blip
-PY_SCRIPT = /work1/davis_nc/BlipModels/protodune/protodune.py
-CONFIG = /work1/davis_nc/BlipModels/protodune/config/unet_test.yaml
+SETUP_SCRIPT=/work1/davis_nc/Blip/scripts/wc_setup.sh
+BLIP_ENV=/wclustre/dune/ncarrara/blip
+PY_SCRIPT=/work1/davis_nc/BlipModels/protodune/protodune.py
+CONFIG=/work1/davis_nc/BlipModels/protodune/config/unet_test.yaml
 
 source $SETUP_SCRIPT
 conda activate $BLIP_ENV
