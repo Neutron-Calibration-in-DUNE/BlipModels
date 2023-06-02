@@ -18,7 +18,7 @@ dataset:
   ]
 
   # Otherwise, we want to just load the resulting data
-  dataset_type:   "voxel"
+  dataset_type:   "cluster"
   dataset_folder:  "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   dataset_files:  [
     "blip_simulation_0/view1_tpc0.npz",
@@ -88,9 +88,13 @@ dataset:
     "blip_simulation_10/view1_tpc8.npz",
     "blip_simulation_10/view1_tpc10.npz",
   ]
+  dbscan_min_samples: 6
+  dbscan_eps:         10.0
+  cluster_class:      "shape"
+  cluster_label:      "blip"
   positions:  ["channel", "tdc"]
   features:   ["adc"]
-  classes:    ["shape"]
+  classes:    ["shape", "particle"]
   # we can regroup classes to reduce their number,
   # e.g., say we want to train so that there are
   # only two important shapes, "blip" and "not-blip",
@@ -99,7 +103,7 @@ dataset:
   #   shape:  [["blip"], ["track"], [""]]
   
   sample_weights: []
-  class_weights:  ["shape"]
+  class_weights:  []
 
 device:
   gpu:        True
