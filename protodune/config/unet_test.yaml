@@ -1,4 +1,10 @@
 # Test config file for Blip
+# Test config file for Blip
+module:
+  module_type:  'training'
+  gpu:          True
+  gpu_device:   0
+
 dataset:
   # If this is the first time processing the simulation output
   process_simulation: False
@@ -99,16 +105,13 @@ dataset:
   #   shape:  [["blip"], ["track"], [""]]
   
   sample_weights: []
-  class_weights:  ["shape"]
-  normalized:     False,
+  class_weights:  []
+  normalized:     False
   root:           "."
+  skip_processing:  False
   transform:      null
   pre_transform:  null
   pre_filter:     null
-
-device:
-  gpu:        True
-  gpu_device: 0
 
 loader:
   loader_type:      "minkowski"
@@ -164,13 +167,14 @@ criterion:
     alpha:  1.0
     
 metrics:
-  confusion_matrix:
+  ConfusionMatrixMetric:
+    mode:   "voxel"
     inputs: ["shape"]
     number_of_classes: [7]
 
 callbacks:
-  loss:
-  confusion_matrix:
+  LossCallback:
+  ConfusionMatrixCallback:
     sig_acceptance: [0.1, 0.5, 0.9]
 
 optimizer:
