@@ -100,6 +100,11 @@ dataset:
   
   sample_weights: []
   class_weights:  ["shape"]
+  normalized:     False,
+  root:           "."
+  transform:      null
+  pre_transform:  null
+  pre_filter:     null
 
 device:
   gpu:        True
@@ -121,8 +126,6 @@ training:
   rewrite_bar:  False   # wether to leave bars after each epoch
   save_predictions: True  # wether to save network outputs in original file
   no_timing:  False     # wether to keep timing/memory info in callback
-  gpu:        True
-  gpu_device: 0
   seed:       42
 
 model:
@@ -157,7 +160,7 @@ model:
     dimension:    2
 
 criterion:
-  multiclass_ce_loss:
+  MultiClassCrossEntropyLoss:
     alpha:  1.0
     
 metrics:
