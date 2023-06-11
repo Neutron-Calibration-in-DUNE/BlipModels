@@ -34,16 +34,19 @@ dataset:
     "blip_simulation_0/view1_tpc10.npz",
   ]
 
-  # clustering related parameters
-  dbscan_min_samples: 6
-  dbscan_eps:         10.0
-  cluster_class:      "shape"
-  cluster_label:      "blip"
-  cluster_positions:  ["channel", "tdc"]
-
   positions:  ["channel", "tdc", "adc"]
   features:   []
   classes:    ["particle"]
+  clusters:   []
+  
+  # We only want to cluster shapes which are blips
+  class_mask: "shape"
+  label_mask: "blip"
+
+  # clustering related parameters
+  dbscan_min_samples: 6
+  dbscan_eps:         10.0
+  cluster_positions:  ["channel", "tdc"]
 
   # we can regroup classes to reduce their number,
   # e.g., say we want to train so that there are
@@ -62,13 +65,13 @@ dataset:
   pre_filter:     null
 
 loader:
-  loader_type:      "minkowski"
   batch_size:       32
   test_split:       0.1
   test_seed:        100
   validation_split: 0.2
   validation_seed:  101
   num_workers:      4
+  sparse:           True
 
 training:
   epochs:       2

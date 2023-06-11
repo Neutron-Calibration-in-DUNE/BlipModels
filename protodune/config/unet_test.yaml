@@ -97,6 +97,7 @@ dataset:
   positions:  ["channel", "tdc"]
   features:   ["adc"]
   classes:    ["shape"]
+  clusters:   ["particle"]
   # we can regroup classes to reduce their number,
   # e.g., say we want to train so that there are
   # only two important shapes, "blip" and "not-blip",
@@ -114,13 +115,13 @@ dataset:
   pre_filter:     null
 
 loader:
-  loader_type:      "minkowski"
   batch_size:       3
   test_split:       0.1
   test_seed:        100
   validation_split: 0.2
   validation_seed:  100
   num_workers:      4
+  sparse:           True
 
 training:
   epochs:       150
