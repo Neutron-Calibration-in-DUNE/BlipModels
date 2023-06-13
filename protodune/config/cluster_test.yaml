@@ -26,12 +26,12 @@ dataset:
   dataset_type:   "cluster"
   dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   dataset_files:  [
-    "blip_simulation_0/view1_tpc0.npz",
-    "blip_simulation_0/view1_tpc2.npz",
-    "blip_simulation_0/view1_tpc4.npz",
-    "blip_simulation_0/view1_tpc6.npz",
-    "blip_simulation_0/view1_tpc8.npz",
-    "blip_simulation_0/view1_tpc10.npz",
+    "blip_simulation_0/view2_tpc1.npz",
+    "blip_simulation_0/view2_tpc2.npz",
+    "blip_simulation_0/view2_tpc5.npz",
+    "blip_simulation_0/view2_tpc6.npz",
+    "blip_simulation_0/view2_tpc9.npz",
+    "blip_simulation_0/view2_tpc10.npz",
   ]
 
   # clustering related parameters
