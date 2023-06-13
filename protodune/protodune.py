@@ -25,6 +25,5 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     blip_module = Module(
-        args.name, 
         args.config_file
     )

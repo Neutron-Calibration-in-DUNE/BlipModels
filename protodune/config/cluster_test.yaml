@@ -1,6 +1,8 @@
 # Test config file for Blip
 module:
+  module_name:  'cluster_test'
   module_type:  'clustering'
+  module_mode:  'parameter_scan'
   gpu:          True
   gpu_device:   0
 
@@ -26,12 +28,17 @@ dataset:
   dataset_type:   "voxel"
   dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   dataset_files:  [
-    "blip_simulation_0/view1_tpc0.npz",
-    "blip_simulation_0/view1_tpc2.npz",
-    "blip_simulation_0/view1_tpc4.npz",
-    "blip_simulation_0/view1_tpc6.npz",
-    "blip_simulation_0/view1_tpc8.npz",
-    "blip_simulation_0/view1_tpc10.npz",
+    "protodune_mc_0/view2_tpc9.npz",
+    "protodune_mc_1/view2_tpc9.npz",
+    "protodune_mc_2/view2_tpc9.npz",
+    "protodune_mc_3/view2_tpc9.npz",
+    "protodune_mc_4/view2_tpc9.npz",
+    "protodune_mc_5/view2_tpc9.npz",
+    "protodune_mc_6/view2_tpc9.npz",
+    "protodune_mc_7/view2_tpc9.npz",
+    "protodune_mc_8/view2_tpc9.npz",
+    "protodune_mc_9/view2_tpc9.npz",
+    "protodune_mc_10/view2_tpc9.npz",
   ]
 
   positions:  ["channel", "tdc"]
@@ -59,10 +66,10 @@ dataset:
   pre_filter:     null
 
 loader:
-  batch_size:       32
-  test_split:       0.1
+  batch_size:       1
+  test_split:       0.0
   test_seed:        100
-  validation_split: 0.2
+  validation_split: 0.0
   validation_seed:  101
   num_workers:      4
 
@@ -83,5 +90,7 @@ clustering_algorithms:
 metrics:
   AdjustedRandIndexMetric:
     inputs: ["DBSCAN"]
+    classes: [16, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29]
 
 callbacks:
+  AdjustedRandIndexCallback:
