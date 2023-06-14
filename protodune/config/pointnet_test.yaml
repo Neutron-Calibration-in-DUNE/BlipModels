@@ -29,11 +29,11 @@ dataset:
   dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   dataset_files:  [
     "protodune_mc_0/view1_tpc0.npz",
-    "protodune_mc_0/view1_tpc2.npz",
-    "protodune_mc_0/view1_tpc4.npz",
-    "protodune_mc_0/view1_tpc6.npz",
-    "protodune_mc_0/view1_tpc8.npz",
-    "protodune_mc_0/view1_tpc10.npz",
+    # "protodune_mc_0/view1_tpc2.npz",
+    # "protodune_mc_0/view1_tpc4.npz",
+    # "protodune_mc_0/view1_tpc6.npz",
+    # "protodune_mc_0/view1_tpc8.npz",
+    # "protodune_mc_0/view1_tpc10.npz",
   ]
 
   positions:  ["channel", "tdc", "adc"]

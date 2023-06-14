@@ -9,7 +9,7 @@ module:
 dataset:
   # If this is the first time processing the simulation output
   process_simulation: False
-  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
+  simulation_folder:  "home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   simulation_files:   [
     "protodune_mc_0.root",
     "protodune_mc_1.root",
@@ -19,32 +19,33 @@ dataset:
     "protodune_mc_5.root",
     "protodune_mc_6.root",
     "protodune_mc_7.root",
-    "protodune_mc_8.root",
-    "protodune_mc_9.root",
-    "protodune_mc_10.root",
+    # "protodune_mc_8.root",
+    # "protodune_mc_9.root",
+    # "protodune_mc_10.root",
   ]
 
   # Otherwise, we want to just load the resulting data
   dataset_type:   "voxel"
   dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   dataset_files:  [
-    "protodune_mc_0/view2_tpc9.npz",
-    "protodune_mc_1/view2_tpc9.npz",
-    "protodune_mc_2/view2_tpc9.npz",
-    "protodune_mc_3/view2_tpc9.npz",
-    "protodune_mc_4/view2_tpc9.npz",
-    "protodune_mc_5/view2_tpc9.npz",
-    "protodune_mc_6/view2_tpc9.npz",
-    "protodune_mc_7/view2_tpc9.npz",
-    "protodune_mc_8/view2_tpc9.npz",
-    "protodune_mc_9/view2_tpc9.npz",
-    "protodune_mc_10/view2_tpc9.npz",
+    "protodune_mc_0/view2_tpc1.npz",
+    "protodune_mc_1/view2_tpc1.npz",
+    "protodune_mc_2/view2_tpc1.npz",
+    "protodune_mc_3/view2_tpc1.npz",
+    "protodune_mc_4/view2_tpc1.npz",
+    "protodune_mc_5/view2_tpc1.npz",
+    "protodune_mc_6/view2_tpc1.npz",
+    "protodune_mc_7/view2_tpc1.npz",
+    # "protodune_mc_8/view2_tpc1.npz",
+    # "protodune_mc_9/view2_tpc1.npz",
+    # "protodune_mc_10/view2_tpc1.npz",
   ]
 
   positions:  ["channel", "tdc"]
   features:   ["adc"]
   classes:    ["particle"]
   clusters:   ["particle"]
+
   # We only want to cluster shapes which are blips
   class_mask: "shape"
   label_mask: "blip"

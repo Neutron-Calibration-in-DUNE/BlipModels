@@ -8,7 +8,7 @@ module:
 
 dataset:
   # If this is the first time processing the simulation output
-  process_simulation: True
+  process_simulation: False
   process_type:       'all'
   simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   simulation_files:   [
