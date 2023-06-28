@@ -1,0 +1,64 @@
+# Test config file for Blip
+module:
+  module_name:  'production_prepare_data_DR'
+  module_type:  'ml'
+  module_mode:  'training'
+  gpu:          True
+  gpu_device:   0
+
+dataset:
+  # If this is the first time processing the simulation output
+  process_simulation: True
+  simulation_folder:  ""
+  simulation_files:   [
+    "pnsNeutrons_output_sim_file_62834405.0.root",
+    "pnsNeutrons_output_sim_file_62834405.1.root",
+    "pnsNeutrons_output_sim_file_62834405.2.root",
+    "pnsNeutrons_output_sim_file_62834405.3.root",
+    "pnsNeutrons_output_sim_file_62834405.4.root",
+    "pnsNeutrons_output_sim_file_62834405.5.root",
+    "pnsNeutrons_output_sim_file_62834405.6.root",
+    "pnsNeutrons_output_sim_file_62834405.7.root",
+    "pnsNeutrons_output_sim_file_62834405.8.root",
+    "pnsNeutrons_output_sim_file_62834405.9.root",
+    "pnsNeutrons_output_sim_file_62834405.10.root",
+    "pnsNeutrons_output_sim_file_62834405.11.root",
+    "pnsNeutrons_output_sim_file_62834405.12.root",
+    "pnsNeutrons_output_sim_file_62834405.13.root",
+    "pnsNeutrons_output_sim_file_62834405.14.root",
+    "pnsNeutrons_output_sim_file_62834405.15.root",
+    "pnsNeutrons_output_sim_file_62834405.16.root",
+    "pnsNeutrons_output_sim_file_62834405.17.root",
+    "pnsNeutrons_output_sim_file_62834405.18.root",
+    "pnsNeutrons_output_sim_file_62834405.19.root",
+    "pnsNeutrons_output_sim_file_62834405.20.root",
+    "pnsNeutrons_output_sim_file_62834405.21.root",
+    "pnsNeutrons_output_sim_file_62834405.22.root",
+    "pnsNeutrons_output_sim_file_62834405.23.root",
+    "pnsNeutrons_output_sim_file_62834405.24.root",
+    "pnsNeutrons_output_sim_file_62834405.25.root",
+    "pnsNeutrons_output_sim_file_62834405.26.root",
+    "pnsNeutrons_output_sim_file_62834405.27.root",
+    "pnsNeutrons_output_sim_file_62834405.28.root",
+    "pnsNeutrons_output_sim_file_62834405.29.root",
+    "pnsNeutrons_output_sim_file_62834405.30.root",
+    "pnsNeutrons_output_sim_file_62834405.31.root",
+    "pnsNeutrons_output_sim_file_62834405.32.root",
+    "pnsNeutrons_output_sim_file_62834405.33.root",
+    "pnsNeutrons_output_sim_file_62834405.34.root",
+    "pnsNeutrons_output_sim_file_62834405.35.root",
+    "pnsNeutrons_output_sim_file_62834405.36.root",
+    "pnsNeutrons_output_sim_file_62834405.37.root",
+    "pnsNeutrons_output_sim_file_62834405.38.root",
+    "pnsNeutrons_output_sim_file_62834405.39.root",
+    "pnsNeutrons_output_sim_file_62834405.40.root",
+    "pnsNeutrons_output_sim_file_62834405.41.root",
+    "pnsNeutrons_output_sim_file_62834405.42.root",
+    "pnsNeutrons_output_sim_file_62834405.43.root",
+    "pnsNeutrons_output_sim_file_62834405.44.root",
+    "pnsNeutrons_output_sim_file_62834405.45.root",
+    "pnsNeutrons_output_sim_file_62834405.46.root",
+    "pnsNeutrons_output_sim_file_62834405.47.root",
+    "pnsNeutrons_output_sim_file_62834405.48.root",
+    "pnsNeutrons_output_sim_file_62834405.49.root",
+  ]
