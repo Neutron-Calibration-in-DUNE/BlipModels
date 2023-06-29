@@ -9,7 +9,7 @@ module:
 dataset:
   # If this is the first time processing the simulation output
   process_simulation: True
-  simulation_folder:  ""
+  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
   simulation_files:   [
     "pnsNeutrons_output_sim_file_62834405.0.root",
     "pnsNeutrons_output_sim_file_62834405.1.root",
@@ -62,3 +62,33 @@ dataset:
     "pnsNeutrons_output_sim_file_62834405.48.root",
     "pnsNeutrons_output_sim_file_62834405.49.root",
   ]
+
+  positions:  ["channel", "tdc", "adc"]
+  features:   []
+  classes:    ["particle"]
+  clusters:   []
+  
+  # We only want to cluster shapes which are blips
+  class_mask: "shape"
+  label_mask: "blip"
+
+  # clustering related parameters
+  dbscan_min_samples: 6
+  dbscan_eps:         10.0
+  cluster_positions:  ["channel", "tdc"]
+
+  # we can regroup classes to reduce their number,
+  # e.g., say we want to train so that there are
+  # only two important shapes, "blip" and "not-blip",
+  # then we would consolidate like below:
+  consolidate_classes:  
+  #   shape:  [["blip"], [""]]
+  
+  sample_weights: []
+  class_weights:  []
+  normalized:     False
+  root:           "."
+  skip_processing:  False
+  transform:      null
+  pre_transform:  null
+  pre_filter:     null
