@@ -1,0 +1,330 @@
+# Test config file for Blip
+module:
+  module_name:  'production_pointnet_DR'
+  module_type:  ['ml']
+  module_mode:  ['training']
+  gpu:          True
+  gpu_device:   0
+  verbose:      False
+
+dataset:
+  # If this is the first time processing the simulation output
+  process_simulation: False
+  simulation_type:    'LArSoft'
+  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
+  simulation_files:   [
+    "single_gammas_0.516MeV.0.root",
+    "single_gammas_0.516MeV.1.root",
+    "single_gammas_0.516MeV.2.root",
+    "single_gammas_0.516MeV.3.root",
+    "single_gammas_0.516MeV.4.root",
+    "single_gammas_0.516MeV.5.root",
+    "single_gammas_0.516MeV.6.root",
+    "single_gammas_0.516MeV.7.root",
+    "single_gammas_0.516MeV.8.root",
+    "single_gammas_0.516MeV.9.root",
+    "single_gammas_0.516MeV.10.root",
+    "single_gammas_0.516MeV.11.root",
+    "single_gammas_0.516MeV.12.root",
+    "single_gammas_0.516MeV.13.root",
+    "single_gammas_0.516MeV.14.root",
+    "single_gammas_0.8378MeV.0.root",
+    "single_gammas_0.8378MeV.1.root",
+    "single_gammas_0.8378MeV.2.root",
+    "single_gammas_0.8378MeV.3.root",
+    "single_gammas_0.8378MeV.4.root",
+    "single_gammas_0.8378MeV.5.root",
+    "single_gammas_0.8378MeV.6.root",
+    "single_gammas_0.8378MeV.7.root",
+    "single_gammas_0.8378MeV.8.root",
+    "single_gammas_0.8378MeV.9.root",
+    "single_gammas_0.8378MeV.10.root",
+    "single_gammas_0.8378MeV.11.root",
+    "single_gammas_0.8378MeV.12.root",
+    "single_gammas_1.1868MeV.0.root",
+    "single_gammas_1.1868MeV.1.root",
+    "single_gammas_1.1868MeV.2.root",
+    "single_gammas_1.1868MeV.3.root",
+    "single_gammas_1.1868MeV.4.root",
+    "single_gammas_1.1868MeV.5.root",
+    "single_gammas_1.1868MeV.6.root",
+    "single_gammas_1.1868MeV.7.root",
+    "single_gammas_1.1868MeV.8.root",
+    "single_gammas_1.1868MeV.9.root",
+    "single_gammas_1.1868MeV.10.root",
+    "single_gammas_1.1868MeV.11.root",
+    "single_gammas_1.1868MeV.12.root",
+    "single_gammas_2.5661MeV.0.root",
+    "single_gammas_2.5661MeV.1.root",
+    "single_gammas_2.5661MeV.2.root",
+    "single_gammas_2.5661MeV.3.root",
+    "single_gammas_2.5661MeV.4.root",
+    "single_gammas_2.5661MeV.5.root",
+    "single_gammas_2.5661MeV.6.root",
+    "single_gammas_2.5661MeV.7.root",
+    "single_gammas_2.5661MeV.8.root",
+    "single_gammas_2.5661MeV.9.root",
+    "single_gammas_2.5661MeV.10.root",
+    "single_gammas_2.5661MeV.11.root",
+    "single_gammas_2.5661MeV.12.root",
+    "single_gammas_2.5661MeV.13.root",
+    "single_gammas_3.3655MeV.0.root",
+    "single_gammas_3.3655MeV.1.root",
+    "single_gammas_3.3655MeV.2.root",
+    "single_gammas_3.3655MeV.3.root",
+    "single_gammas_3.3655MeV.4.root",
+    "single_gammas_3.3655MeV.5.root",
+    "single_gammas_3.3655MeV.6.root",
+    "single_gammas_3.3655MeV.7.root",
+    "single_gammas_3.3655MeV.8.root",
+    "single_gammas_3.3655MeV.9.root",
+    "single_gammas_3.3655MeV.10.root",
+    "single_gammas_3.3655MeV.11.root",
+    "single_gammas_3.3655MeV.12.root",
+    "single_gammas_4.745MeV.0.root",
+    "single_gammas_4.745MeV.1.root",
+    "single_gammas_4.745MeV.2.root",
+    "single_gammas_4.745MeV.3.root",
+    "single_gammas_4.745MeV.4.root",
+    "single_gammas_4.745MeV.5.root",
+    "single_gammas_4.745MeV.6.root",
+    "single_gammas_4.745MeV.7.root",
+    "single_gammas_4.745MeV.8.root",
+    "single_gammas_4.745MeV.9.root",
+    "single_gammas_4.745MeV.10.root",
+    "single_gammas_4.745MeV.11.root",
+    "single_gammas_4.745MeV.12.root",
+    "single_gammas_4.745MeV.13.root",
+    "single_gammas_4.745MeV.14.root",
+    "single_ar39_63030638.0.root",
+    "single_ar42_2120542.0.root",
+    "single_kr85_2120208.0.root",
+    "single_rn222_70074835.0.root",
+    "single_rn222_70074835.1.root",
+    "single_rn222_70074835.2.root",
+    "single_rn222_70074835.3.root",
+  ]
+
+  # Otherwise, we want to just load the resulting data
+  dataset_type:   "cluster"
+  dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/protodune/data/"
+  dataset_files:  [
+    "single_gammas_0.516MeV.0/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.1/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.2/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.3/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.4/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.5/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.6/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.7/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.8/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.9/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.10/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.11/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.12/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.13/view2_tpc2.npz",
+    # "single_gammas_0.516MeV.14/view2_tpc2.npz",
+    "single_gammas_0.8378MeV.0/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.1/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.2/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.3/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.4/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.5/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.6/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.7/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.8/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.9/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.10/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.11/view2_tpc2.npz",
+    # "single_gammas_0.8378MeV.12/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.0/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.1/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.2/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.3/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.4/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.5/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.6/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.7/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.8/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.9/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.10/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.11/view2_tpc2.npz",
+    # "single_gammas_1.1868MeV.12/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.0/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.1/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.2/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.3/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.4/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.5/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.6/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.7/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.8/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.9/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.10/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.11/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.12/view2_tpc2.npz",
+    # "single_gammas_2.5661MeV.13/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.0/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.1/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.2/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.3/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.4/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.5/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.6/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.7/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.8/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.9/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.10/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.11/view2_tpc2.npz",
+    # "single_gammas_3.3655MeV.12/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.0/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.1/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.2/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.3/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.4/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.5/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.6/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.7/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.8/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.9/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.10/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.11/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.12/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.13/view2_tpc2.npz",
+    # "single_gammas_4.745MeV.14/view2_tpc2.npz",
+    # "single_ar39_63030638.0/view2_tpc2.npz",
+    # "single_ar42_2120542.0/view2_tpc2.npz",
+    # "single_kr85_2120208.0/view2_tpc2.npz",
+    # "single_rn222_70074835.0/view2_tpc2.npz",
+    # "single_rn222_70074835.1/view2_tpc2.npz",
+    # "single_rn222_70074835.2/view2_tpc2.npz",
+    # "single_rn222_70074835.3/view2_tpc2.npz"
+  ]
+  normalized:     False
+  root:           "."
+  skip_processing:  False
+  transform:      null
+  pre_transform:  null
+  pre_filter:     null
+
+  # ---- variables ----
+  positions:  ["channel", "tdc", "adc"]
+  features:   ["adc"]
+  classes:    ["particle"]
+  labels:     [
+    [ 
+      "capture_gamma_474", 
+      "capture_gamma_336",
+      "capture_gamma_256",
+      "capture_gamma_118",
+      "capture_gamma_083",
+      "capture_gamma_051",
+      # "capture_gamma_016",
+      "ar39",
+      "ar42",
+      "kr85",
+      "rn222",
+      # "nuclear_recoil",
+      # "electron_recoil"
+    ]
+  ]
+  clusters:   ["particle"]
+
+  # ---- normalization ----
+  position_normalization:   []
+  features_normalization:   []
+
+  # ---- weights ----
+  class_weights:  []
+  sample_weights: []
+
+  # clustering related parameters
+  dbscan_min_samples: 6
+  dbscan_eps:         500.0
+  cluster_positions:  ["channel", "tdc"]
+  cluster_category_type:  "classification"
+
+  # We only want to cluster shapes which are blips
+  classes_mask: ["shape"]
+  labels_mask:  [["blip"]]
+  consolidate_classes:
+
+loader:
+  batch_size:       8
+  test_split:       0.1
+  test_seed:        100
+  validation_split: 0.2
+  validation_seed:  101
+  num_workers:      4
+  sparse:           True
+
+training:
+  epochs:       2
+  checkpoint:   10
+  progress_bar: 'all'   # train, validation, test, all
+  rewrite_bar:  False   # wether to leave bars after each epoch
+  save_predictions: True  # wether to save network outputs in original file
+  no_timing:  False     # wether to keep timing/memory info in callback
+  seed:       42
+
+model:
+  # uncomment the line below and specify the model to load from a checkpoint.
+  # load_model:   ".checkpoints/checkpoint_200.ckpt"
+
+  # multiple options for model_type: 
+  # [ "single", "composite", ... ]
+  model_type: "single"
+  PointNet: 
+    input_dimension:      3
+    classifications:      ["particle"]
+    augmentations:
+      jitter: 0.03
+      flip:
+        positions:     [0, 1]
+        probabilities: [0.5, 0.5]
+      shear:  0.2
+      rotate:
+        degrees:  [15]
+        axis:     [2]
+    number_of_augmentations:  5
+    embedding_type:       "dynamic_edge_conv"
+    number_of_embeddings: 4
+    number_of_neighbors:  [20, 20, 20, 20]    
+    aggregation:          ["max", "add", "mean", "max"]
+    embedding_mlp_layers: [
+      [64, 128],
+      [64, 128],
+      [64, 128],
+      [64, 128]
+    ]
+    embedding_activations: ['leru', 'leru', 'leru', 'leru']
+    linear_output:        512
+    mlp_output_layers:    [512, 256, 128, 64, 32]
+    out_channels:         [10]
+    add_summed_adc:       True
+  
+criterion:
+  MultiClassCrossEntropyLoss:
+    alpha:    1.0
+    classes:  ["particle"]
+  NTXEntropyLoss:
+    alpha:  1.0
+    classes:  ["reductions"]
+    
+metrics:
+  ConfusionMatrixMetric:
+    mode:   "voxel"
+    inputs: ["particle"]
+
+callbacks:
+  LossCallback:
+  ConfusionMatrixCallback:
+    sig_acceptance: [0.1, 0.5, 0.9]
+
+optimizer:
+  optimizer_type: "Adam"
+  learning_rate:  0.01
+  betas:          [0.9, 0.999]
+  epsilon:        1e-08
+  weight_decay:   0.001
+  momentum:       0.9
