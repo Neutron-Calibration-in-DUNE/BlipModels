@@ -3,7 +3,7 @@ module:
   module_name:  'pion_analysis_LM'
   module_type:  ['PionAnalysisModule']
   module_mode:  ['analysis']
-  custom_module_file: "/home/ncarrara/physics/DUNE/BlipModels/pion/pion_analysis.py"
+  custom_module_file: "/home/laura/Analysis_Laura/BlipModels/pion/pion_analysis.py"
   gpu:          True
   gpu_device:   0
   verbose:      False
@@ -12,7 +12,7 @@ dataset:
   # If this is the first time processing the simulation output
   process_simulation: True
   simulation_type:    'LArSoft'
-  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/pion/data/"
+  simulation_folder:  "/home/laura/Analysis_Laura/BlipModels/pion/data/"
   simulation_files:   [
     "piplus1GeV_output_sim_file_2349667.8.root",
     "piplus1GeV_output_sim_file_2349667.9.root"
@@ -20,7 +20,7 @@ dataset:
 
   # Otherwise, we want to just load the resulting data
   dataset_type:   "voxel"
-  dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/pion/data/"
+  dataset_folder: "/home/laura/Analysis_Laura/BlipModels/pion/data/"
   dataset_files:  [
     "piplus1GeV_output_sim_file_2349667.8/view2_tpc2.npz",
     "piplus1GeV_output_sim_file_2349667.9/view2_tpc2.npz"
