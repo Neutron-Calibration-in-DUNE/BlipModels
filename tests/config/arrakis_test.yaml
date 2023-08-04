@@ -1,0 +1,60 @@
+# Test config file for Blip
+module:
+  module_name:  'arrakis_labeling_test'
+  module_type:  ['ml']
+  module_mode:  ['training']
+  gpu:          True
+  gpu_device:   0
+  verbose:      False
+
+dataset:
+  # If this is the first time processing the simulation output
+  process_simulation: True
+  simulation_type:    'LArSoft'
+  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/tests/data/"
+  simulation_files:   [
+    "labeling_sim_arrakis.root"
+  ]
+
+  # Otherwise, we want to just load the resulting data
+  dataset_type:   "voxel"
+  dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/tests/data/"
+  dataset_files:  [
+    "labeling_sim_arrakis/view2_tpc2.npz"
+  ]
+  normalized:     False
+  root:           "."
+  skip_processing:  False
+  transform:      null
+  pre_transform:  null
+  pre_filter:     null
+
+  # ---- variables ----
+  positions:  ["channel", "tdc", "adc"]
+  features:   ["adc"]
+  classes:    ["source", "topology", "particle", "physics"]
+  hits:       ["mean", "rms", "amplitude", "charge"]
+  labels:     []
+  clusters:   []
+
+  # ---- normalization ----
+  position_normalization:   []
+  features_normalization:   []
+
+  # ---- weights ----
+  class_weights:  []
+  sample_weights: []
+
+  # We only want to cluster shapes which are blips
+  classes_mask: []
+  labels_mask:  []
+  consolidate_classes:
+
+loader:
+  batch_size:       8
+  test_split:       0.1
+  test_seed:        100
+  validation_split: 0.2
+  validation_seed:  101
+  num_workers:      4
+  sparse:           True
