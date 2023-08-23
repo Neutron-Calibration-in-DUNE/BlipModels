@@ -286,21 +286,25 @@ model:
       rotate:
         degrees:  [15]
         axis:     [2]
-    number_of_augmentations:  5
-    embedding_type:       "dynamic_edge_conv"
-    number_of_embeddings: 4
-    number_of_neighbors:  [20, 20, 20, 20]    
-    aggregation:          ["max", "add", "mean", "max"]
-    embedding_mlp_layers: [
-      [64, 128],
-      [64, 128],
-      [64, 128],
-      [64, 128]
-    ]
-    embedding_activations: ['leru', 'leru', 'leru', 'leru']
-    linear_output:        512
-    mlp_output_layers:    [512, 256, 128, 64, 32]
-    out_channels:         [10]
+      number_of_augmentations:  5
+    embedding:
+      embedding_type:       "dynamic_edge_conv"
+      number_of_embeddings: 4
+      number_of_neighbors:  [20, 20, 20, 20]    
+      aggregation:          ["max", "add", "mean", "max"]
+      embedding_mlp_layers: [
+        [64, 128],
+        [64, 128],
+        [64, 128],
+        [64, 128]
+      ]
+      embedding_activations: ['leru', 'leru', 'leru', 'leru']
+    reduction:
+      linear_output:        512
+      reduction_type:       'max_pool'
+    classification:
+      mlp_output_layers:    [512, 256, 128, 64, 32]
+      out_channels:         [10]
     add_summed_adc:       True
   
 criterion:

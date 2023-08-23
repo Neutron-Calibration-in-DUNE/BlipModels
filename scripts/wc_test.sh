@@ -4,8 +4,7 @@
 #SBATCH --nodelist=wcgpu04
 #SBATCH --gres=gpu:1 
 
-SETUP_SCRIPT=/work1/davis_nc/Blip/scripts/wc_setup_blip.sh
-CONFIG=/work1/davis_nc/BlipModels/protodune/config/production_pointnet_gammas_DR.yaml
+HOME=/wclustre/davis_nc/ apptainer shell --nv --home=/wclustre/davis_nc/ /wclustre/davis_nc/images/blip.sif
+BLIP_CONFIG=/work1/davis_nc/Blip/config/blank_config.yaml
 
-source $SETUP_SCRIPT
-blip $CONFIG
+blip $BLIP_CONFIG
