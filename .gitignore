@@ -9,3 +9,5 @@
 *predictions/
 *data/
 *processed/
+*scratch/
+*__pycache__/
