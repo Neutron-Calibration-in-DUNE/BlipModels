@@ -1,9 +1,8 @@
 # Test config file for Blip
 module:
-  module_name:  'pion_analysis_LM'
-  module_type:  ['PionAnalysisModule']
-  module_mode:  ['analysis']
-  custom_module_file: "/home/laura/Analysis_Laura/BlipModels/pion/pion_analysis.py"
+  module_name:  'arrakis_labeling_test'
+  module_type:  ['ml']
+  module_mode:  ['training']
   gpu:          True
   gpu_device:   0
   verbose:      False
@@ -12,18 +11,16 @@ dataset:
   # If this is the first time processing the simulation output
   process_simulation: True
   simulation_type:    'LArSoft'
-  simulation_folder:  "/home/laura/Analysis_Laura/BlipModels/pion/data/"
+  simulation_folder:  "/home/ncarrara/physics/DUNE/BlipModels/tests/data/"
   simulation_files:   [
-    "piplus1GeV_output_sim_file_2349667.8.root",
-    "piplus1GeV_output_sim_file_2349667.9.root"
+    "labeling_sim_arrakis.root"
   ]
 
   # Otherwise, we want to just load the resulting data
   dataset_type:   "voxel"
-  dataset_folder: "/home/laura/Analysis_Laura/BlipModels/pion/data/"
+  dataset_folder: "/home/ncarrara/physics/DUNE/BlipModels/tests/data/"
   dataset_files:  [
-    "piplus1GeV_output_sim_file_2349667.8/view2_tpc2.npz",
-    "piplus1GeV_output_sim_file_2349667.9/view2_tpc2.npz"
+    "labeling_sim_arrakis/view2_tpc2.npz"
   ]
   normalized:     False
   root:           "."
@@ -35,13 +32,10 @@ dataset:
   # ---- variables ----
   positions:  ["channel", "tdc", "adc"]
   features:   ["adc"]
-  classes:    ["particle"]
-  labels:     [
-    [
-      "pi+"
-    ]
-  ]
-  clusters:   ["particle"]
+  classes:    ["source", "topology", "particle", "physics"]
+  hits:       ["mean", "rms", "amplitude", "charge"]
+  labels:     []
+  clusters:   []
 
   # ---- normalization ----
   position_normalization:   []
@@ -50,12 +44,6 @@ dataset:
   # ---- weights ----
   class_weights:  []
   sample_weights: []
-
-  # clustering related parameters
-  dbscan_min_samples: 6
-  dbscan_eps:         500.0
-  cluster_positions:  ["channel", "tdc"]
-  cluster_category_type:  "classification"
 
   # We only want to cluster shapes which are blips
   classes_mask: []
