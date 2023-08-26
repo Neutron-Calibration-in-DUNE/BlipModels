@@ -15,4 +15,5 @@
 #SBATCH --image=docker:infophysics/blip:latest  
 #SBATCH --volume="/pscratch/sd/n/ncarrara:/local_scratch;/global/cfs/cdirs/dune/users/ncarrara/blip;/local_blip;/global/cfs/cdirs/dune/users/ncarrara/data;/local_data"
 
-shifter arrakis /local_blip/my_config.yaml
+setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
+shifter arrakis /local_blip/my_config.yaml bash

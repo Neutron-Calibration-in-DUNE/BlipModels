@@ -16,4 +16,4 @@ LOCAL_BLIP=/global/cfs/cdirs/dune/users/${USER}/blip
 LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}/data
 
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
-shifter --image=docker:infophysics/blip:latest --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data"
+shifter --image=docker:infophysics/blip:latest --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data" bash
