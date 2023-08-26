@@ -1,0 +1,241 @@
+# Test config file for Blip
+module:
+  module_name:  'production_pointnet_DR'
+  module_type:  ['ml']
+  module_mode:  ['training']
+  gpu:          True
+  gpu_device:   0
+  verbose:      False
+
+dataset:
+    # ---- Arrakis ----
+  # This section defines the 'arrakis.py' submodule which takes in
+  # outputs from different Arrakis iterations and constructs a common dataset format
+  # in .npz or .hdf5 files.
+  # If this is the first time processing the simulation output
+  process_simulation: True
+  simulation_type:    'LArSoft'
+  simulation_folder:  "/data/dr_sims/"
+  process_type:       ['wire_plane_point_cloud', 'energy_deposit_point_cloud']
+  simulation_files:   [
+    "single_capture_gamma_0.516.0.root",
+    "single_capture_gamma_0.516.1.root",
+    "single_capture_gamma_0.516.2.root",
+    "single_capture_gamma_0.516.3.root",
+    "single_capture_gamma_0.516.4.root",
+    "single_capture_gamma_0.516.5.root",
+    "single_capture_gamma_0.516.6.root",
+    "single_capture_gamma_0.516.7.root",
+    "single_capture_gamma_0.1673.0.root",
+    "single_capture_gamma_0.1673.1.root",
+    "single_capture_gamma_0.1673.2.root",
+    "single_capture_gamma_0.1673.3.root",
+    "single_capture_gamma_0.1673.4.root",
+    "single_capture_gamma_0.1673.5.root",
+    "single_capture_gamma_0.1673.6.root",
+    "single_capture_gamma_0.1673.7.root",
+    "single_capture_gamma_0.1673.8.root",
+    "single_capture_gamma_0.1673.9.root",
+    "single_capture_gamma_0.8378.0.root",
+    "single_capture_gamma_1.1868.0.root",
+    "single_capture_gamma_2.5661.0.root",
+    "single_capture_gamma_3.3655.0.root",
+    "single_capture_gamma_4.745.0.root"
+  ]
+  # Otherwise, we want to just load the resulting data
+  dataset_type:   "view_cluster"
+  dataset_folder: "data/"
+  dataset_files:  [
+    "single_capture_gamma_3.3655.0/tpc2.npz",
+    "single_capture_gamma_4.745.0/tpc2.npz",
+  ]
+  view:           2
+  positions:      ['channel', 'tdc', 'adc']
+  features:       ['adc']
+  classes:        ['particle', 'physics']
+  labels:         []
+  clusters:       []
+  hits:           []
+
+  # ---- normalization ----
+  position_normalization:   []
+  features_normalization:   []
+
+  # ---- weights ----
+  class_weights:  []
+  sample_weights: []
+
+  # clustering related parameters
+  dbscan_min_samples: 6
+  dbscan_eps:         500.0
+  cluster_positions:  ["channel", "tdc"]
+  cluster_category_type:  "classification"
+
+  # We only want to cluster shapes which are blips
+  classes_mask: ["topology"]
+  labels_mask:  [["blip"]]
+  consolidate_classes:
+  # transforms and filters
+  root:           "."
+  skip_processing:  False
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
+
+loader:
+  batch_size:       8
+  test_split:       0.1
+  test_seed:        100
+  validation_split: 0.2
+  validation_seed:  101
+  num_workers:      4
+  sparse:           True
+
+training:
+  epochs:       2
+  checkpoint:   10
+  progress_bar: 'all'   # train, validation, test, all
+  rewrite_bar:  False   # wether to leave bars after each epoch
+  save_predictions: True  # wether to save network outputs in original file
+  no_timing:  False     # wether to keep timing/memory info in callback
+  seed:       42
+
+model:
+  # uncomment the line below and specify the model to load from a checkpoint.
+  # load_model:   ".checkpoints/checkpoint_200.ckpt"
+
+  # multiple options for model_type: 
+  # [ "single", "composite", ... ]
+  model_type: "single"
+  BlipGraph:
+    input_dimension:      3
+    classifications:      ["particle", "physics"]
+    add_summed_adc:       true
+    augmentations:
+      jitter: 0.03
+      flip:
+        positions:     [0, 1]
+        probabilities: [0.5, 0.5]
+      shear:  0.2
+      rotate:
+        degrees:  [15]
+        axis:     [2]
+      number_of_augmentations:  5
+    embedding:
+      embedding_1:  
+        embedding_type: 'dynamic_edge_conv'
+        number_of_neighbors:  5
+        aggregation:    'max'
+        embedding_mlp_layers: [5, 10, 25, 10]
+      # embedding_2:
+      #   embedding_type: 'point_net_conv'
+      #   local_mlp_layers: [5, 10, 25, 10]
+      #   add_self_loops: true
+    reduction:
+      reduction_type: 'max_pool'
+      linear_output:  512
+    classification:
+      mlp_output_layers:    [512, 256, 128, 64, 32]
+      out_channels:         [28, 23]
+  
+criterion:
+  CrossEntropyLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  NTXEntropyLoss:
+    alpha:  1.0
+    target_type:  "augment_batch"
+    targets:  ["reductions"]
+    outputs:  ["reductions"]
+  FocalLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  DiceLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  JaccardIndexLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  TverskyLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  ContrastiveLoss:
+    alpha:  1.0
+    target_type:  "augment_batch"
+    targets:  ["reductions"]
+    outputs:  ["reductions"]
+  AngularLoss:
+    alpha:  1.0
+    target_type:  "augment_batch"
+    targets:  ["reductions"]
+    outputs:  ["reductions"]
+    
+metrics:
+  ConfusionMatrixMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AdjustedRandIndexMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AUROCMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  DiceScoreMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  JaccardIndexMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AveragePrecisionMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  PrecisionMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  RecallMetric:
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+
+callbacks:
+  LossCallback:
+  MetricCallback:
+  ConfusionMatrixCallback:
+
+optimizer:
+  optimizer_type: "Adam"
+  learning_rate:  0.01
+  betas:          [0.9, 0.999]
+  epsilon:        1e-08
+  weight_decay:   0.001
+  momentum:       0.9
