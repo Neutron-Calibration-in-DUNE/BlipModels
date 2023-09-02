@@ -1,5 +1,6 @@
 # Test config file for Blip
 module:
+  
   module_name:  'unet_test'
   module_type:  'ml'
   module_mode:  'training'
@@ -165,6 +166,14 @@ model:
       stride:       2
       dilation:     1
       dimension:    2
+    
+hyperparameters:
+  filtrations:  [
+    [64, 128, 256, 512],
+    [32, 64, 128, 256, 512, 1024]
+  ]
+  double_conv_params:
+    kernel_size:  [2, 3, 4, 5]
 
 criterion:
   MultiClassCrossEntropyLoss:
