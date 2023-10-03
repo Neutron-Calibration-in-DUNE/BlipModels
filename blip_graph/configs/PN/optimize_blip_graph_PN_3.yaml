@@ -1,0 +1,41 @@
+load_config: '/local_blip/blip_graph/configs/optimize_header.yaml'
+
+hyper_parameters:
+  iterations: 1
+  search_type:  'grid'  # 'grid', 'random', 'bayes'
+  model_parameters:
+    BlipGraph:
+      embedding:
+        embedding_1:
+        embedding_2:
+        embedding_3:
+
+model:
+  model_type:       "single"  
+  BlipGraph:
+    input_dimension:      3
+    classifications:      ["particle", "physics"]
+    add_summed_adc:       true
+    augmentations:
+      jitter: 0.03
+      flip:
+        positions:     [0, 1]
+        probabilities: [0.5, 0.5]
+      shear:  0.2
+      rotate:
+        degrees:  [15]
+        axis:     [2]
+      number_of_augmentations:  5
+    embedding:
+      embedding_1:  
+        embedding_type: 'pointnet'
+      embedding_2:
+        embedding_type: 'pointnet'
+      embedding_3:
+        embedding_type: 'pointnet'
+    reduction:
+      reduction_type: 'max_pool'
+      linear_output:  512
+    classification:
+      mlp_output_layers:    [512, 256, 128, 64, 32]
+      out_channels:         [28, 23]
