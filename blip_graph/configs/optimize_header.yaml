@@ -1,10 +1,10 @@
 module:
   module_name:  'optimize_blip_graph'
   module_type:  ['ml']
-  module_mode:  ['hyperparameter_scan']
-  gpu:          False
+  module_mode:  ['hyper_parameter_scan']
+  gpu:          True
   gpu_device:   0
-  verbose:      True
+  verbose:      False
 
 dataset:
   process_simulation: False
@@ -14,9 +14,79 @@ dataset:
 
   # ---- Blip ----
   dataset_type:   "view_cluster"
-  dataset_folder: "/data/workspace/single_capture_gamma_2.5661.0/"
+  dataset_folder: "/workspace/data/"
   dataset_files:  [
-    "tpc2.npz"
+    "single_capture_gamma_4.745.1/tpc2.npz",
+    "single_capture_gamma_4.745.2/tpc2.npz",
+    "single_capture_gamma_4.745.3/tpc2.npz",
+    "single_capture_gamma_4.745.4/tpc2.npz",
+    "single_capture_gamma_4.745.5/tpc2.npz",
+    "single_capture_gamma_4.745.6/tpc2.npz",
+    "single_capture_gamma_4.745.7/tpc2.npz",
+    "single_capture_gamma_4.745.8/tpc2.npz",
+    "single_capture_gamma_4.745.9/tpc2.npz",
+    "single_capture_gamma_3.3655.0/tpc2.npz",
+    "single_capture_gamma_3.3655.1/tpc2.npz",
+    "single_capture_gamma_3.3655.2/tpc2.npz",
+    "single_capture_gamma_3.3655.3/tpc2.npz",
+    "single_capture_gamma_3.3655.4/tpc2.npz",
+    "single_capture_gamma_3.3655.5/tpc2.npz",
+    "single_capture_gamma_3.3655.6/tpc2.npz",
+    "single_capture_gamma_3.3655.7/tpc2.npz",
+    "single_capture_gamma_3.3655.8/tpc2.npz",
+    "single_capture_gamma_3.3655.9/tpc2.npz",
+    "single_capture_gamma_2.5661.0/tpc2.npz",
+    "single_capture_gamma_2.5661.1/tpc2.npz",
+    "single_capture_gamma_2.5661.2/tpc2.npz",
+    "single_capture_gamma_2.5661.3/tpc2.npz",
+    "single_capture_gamma_2.5661.4/tpc2.npz",
+    "single_capture_gamma_2.5661.5/tpc2.npz",
+    "single_capture_gamma_2.5661.6/tpc2.npz",
+    "single_capture_gamma_2.5661.7/tpc2.npz",
+    "single_capture_gamma_2.5661.8/tpc2.npz",
+    "single_capture_gamma_2.5661.9/tpc2.npz",
+    "single_capture_gamma_1.1868.0/tpc2.npz",
+    "single_capture_gamma_1.1868.1/tpc2.npz",
+    "single_capture_gamma_1.1868.2/tpc2.npz",
+    "single_capture_gamma_1.1868.3/tpc2.npz",
+    "single_capture_gamma_1.1868.4/tpc2.npz",
+    "single_capture_gamma_1.1868.5/tpc2.npz",
+    "single_capture_gamma_1.1868.6/tpc2.npz",
+    "single_capture_gamma_1.1868.7/tpc2.npz",
+    "single_capture_gamma_1.1868.8/tpc2.npz",
+    "single_capture_gamma_1.1868.9/tpc2.npz",
+    "single_capture_gamma_0.8378.0/tpc2.npz",
+    "single_capture_gamma_0.8378.1/tpc2.npz",
+    "single_capture_gamma_0.8378.2/tpc2.npz",
+    "single_capture_gamma_0.8378.3/tpc2.npz",
+    "single_capture_gamma_0.8378.4/tpc2.npz",
+    "single_capture_gamma_0.8378.5/tpc2.npz",
+    "single_capture_gamma_0.8378.6/tpc2.npz",
+    "single_capture_gamma_0.8378.7/tpc2.npz",
+    "single_capture_gamma_0.8378.8/tpc2.npz",
+    "single_capture_gamma_0.8378.9/tpc2.npz",
+    "single_capture_gamma_0.516.0/tpc2.npz",
+    "single_capture_gamma_0.516.1/tpc2.npz",
+    "single_capture_gamma_0.516.2/tpc2.npz",
+    "single_capture_gamma_0.516.3/tpc2.npz",
+    "single_capture_gamma_0.516.4/tpc2.npz",
+    "single_capture_gamma_0.516.5/tpc2.npz",
+    "single_capture_gamma_0.516.6/tpc2.npz",
+    "single_capture_gamma_0.516.7/tpc2.npz",
+    "single_capture_gamma_0.516.8/tpc2.npz",
+    "single_capture_gamma_0.516.9/tpc2.npz",
+    "single_capture_gamma_0.1673.0/tpc2.npz",
+    "single_capture_gamma_0.1673.1/tpc2.npz",
+    "single_capture_gamma_0.1673.2/tpc2.npz",
+    "single_capture_gamma_0.1673.3/tpc2.npz",
+    "single_capture_gamma_0.1673.4/tpc2.npz",
+    "single_capture_gamma_0.1673.5/tpc2.npz",
+    "single_capture_gamma_0.1673.6/tpc2.npz",
+    "single_capture_gamma_0.1673.7/tpc2.npz",
+    "single_capture_gamma_0.1673.8/tpc2.npz",
+    "single_capture_gamma_0.1673.9/tpc2.npz",
+    "single_decay_ar39.0/tpc2.npz",
+    "single_decay_ar42.0/tpc2.npz",
   ]
   view:           2
   positions:      ['channel', 'tdc', 'adc']
@@ -55,7 +125,7 @@ loader:
   num_workers:      4
 
 training:
-  epochs:       25
+  epochs:       2
   checkpoint:   25
   progress_bar: "all"        # train, validation, test, all
   rewrite_bar:      False # wether to leave bars after each epoch

@@ -1,0 +1,15 @@
+load_config: '/local_blip/BlipModels/blip_graph/configs/optimize_header.yaml'
+
+
+module:
+  module_name:  'linear_evaluation_blip_graph'
+  module_type:  ['ml']
+  module_mode:  ['linear_evaluation']
+  gpu:          False
+  gpu_device:   0
+  verbose:      True
+
+linear_evaluation:
+  models: [
+
+  ]
