@@ -3,7 +3,7 @@
 #SBATCH -J example              # job name, '--job-name', '-J'
 #SBATCH -C gpu                  # type of job (constraint can be 'cpu' or 'gpu'), '--constraint', '-C'
 #SBATCH -q shared               # Jobs requiring 1 or 2 gpus should use the shared setting, all others use 'regular'
-#SBATCH -t 1:00:00              # amount of time requested for the job, '--time', 't'
+#SBATCH -t 8:00:00              # amount of time requested for the job, '--time', 't'
 #SBATCH -N 1                    # number of nodes, '--nodes', '-N'
 #SBATCH -n 1                    # number of tasks '--ntasks', -n'
 #SBATCH -c 32                   # number of cores per task, '--cpus-per-task', '-c'
