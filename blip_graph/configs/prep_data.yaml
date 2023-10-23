@@ -15,7 +15,7 @@ dataset:
   # If this is the first time processing the simulation output
   process_simulation: True
   simulation_type:    'LArSoft'
-  simulation_folder:  "/workspace/data/"
+  simulation_folder:  "/local_data/singles/"
   process_type:       ['wire_plane_point_cloud']
   simulation_files:   [
     "single_capture_gamma_4.745.0.root",

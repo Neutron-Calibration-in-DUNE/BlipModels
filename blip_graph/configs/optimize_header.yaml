@@ -14,7 +14,7 @@ dataset:
 
   # ---- Blip ----
   dataset_type:   "view_cluster"
-  dataset_folder: "/workspace/data/"
+  dataset_folder: "/local_data/singles/"
   dataset_files:  [
     "single_capture_gamma_4.745.0/tpc2.npz",
     "single_capture_gamma_4.745.1/tpc2.npz",
