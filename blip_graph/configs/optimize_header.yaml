@@ -2,12 +2,12 @@ module:
   module_name:  'optimize_blip_graph'
   module_type:  ['ml']
   module_mode:  ['hyper_parameter_scan']
-  gpu:          True
+  gpu:          true
   gpu_device:   0
-  verbose:      False
+  verbose:      false
 
 dataset:
-  process_simulation: False
+  process_simulation: false
   simulation_type:    'LArSoft'
   simulation_folder:  ""
   simulation_files:   []
@@ -61,6 +61,12 @@ dataset:
     "single_decay_ar42.2/tpc2.npz",
     "single_decay_ar42.3/tpc2.npz",
     "single_decay_ar42.4/tpc2.npz",
+    "single_decay_kr85.0/tpc2.npz",
+    "single_decay_kr85.1/tpc2.npz",
+    "single_decay_kr85.2/tpc2.npz",
+    "single_decay_kr85.3/tpc2.npz",
+    "single_decay_kr85.4/tpc2.npz",
+    "single_decay_rn222.0/tpc2.npz"
   ]
   view:           2
   positions:      ['channel', 'tdc', 'adc']
@@ -84,14 +90,14 @@ dataset:
   # We only want to cluster shapes which are blips
   classes_mask: ["topology"]
   labels_mask:  [["blip"]]
-  skip_processing:  False
+  skip_processing:  false
   transform:        null
   pre_transform:    null
   pre_filter:       null
 
 loader:
   loader_type:      "minkowski"
-  batch_size:       8
+  batch_size:       64
   test_split:       0.1
   test_seed:        42
   validation_split: 0.3
@@ -101,10 +107,11 @@ loader:
 training:
   epochs:       2
   checkpoint:   25
-  progress_bar: "all"        # train, validation, test, all
-  rewrite_bar:      False # wether to leave bars after each epoch
-  save_predictions: False  # wether to save network outputs in original file
-  no_timing:    True     # wether to keep timing/memory info in callback
+  progress_bar: "all"     # train, validation, test, all
+  rewrite_bar:      false # wether to leave bars after each epoch
+  save_predictions: false # wether to save network outputs in original file
+  no_timing:    true      # wether to keep timing/memory info in callback
+  skip_metrics: true      # wether to skip metrics except for testing sets
   seed:         0
 
 criterion:
@@ -117,47 +124,55 @@ criterion:
   NTXEntropyLoss:
     alpha:  1.0
     target_type:  "augment_batch"
-    targets:  ["reductions"]
-    outputs:  ["reductions"]
+    targets:  ["projection_head"]
+    outputs:  ["projection_head"]
 
 metrics:
   ConfusionMatrixMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   AdjustedRandIndexMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   AUROCMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   DiceScoreMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   JaccardIndexMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   AveragePrecisionMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   PrecisionMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
   RecallMetric:
     target_type:  "classes"
+    when_to_compute:  "test"
     targets:  ["particle", "physics"]
     outputs:  ["particle", "physics"]  
     augmentations:  5
@@ -165,7 +180,9 @@ metrics:
 callbacks:
   LossCallback:
   MetricCallback:
+    skip_metrics: true
   ConfusionMatrixCallback:
+    skip_metrics: true
 
 optimizer:
   optimizer_type: "Adam"

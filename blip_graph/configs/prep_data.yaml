@@ -63,4 +63,10 @@ dataset:
     "single_decay_ar42.2.root",
     "single_decay_ar42.3.root",
     "single_decay_ar42.4.root",
+    "single_decay_kr85.0.root",
+    "single_decay_kr85.1.root",
+    "single_decay_kr85.2.root",
+    "single_decay_kr85.3.root",
+    "single_decay_kr85.4.root",
+    "single_decay_rn222.0.root"
   ]
