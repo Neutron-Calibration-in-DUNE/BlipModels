@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1       # number of gpus per node.
 #SBATCH --gpu-bind=none         # comment this out if you don't want all gpus visible to each task
 
-LOCAL_SCRATCH=/pscratch/sd/n/${USER}
+LOCAL_SCRATCH=/pscratch/sd/${USER:0:1}/${USER}
 LOCAL_BLIP=/global/cfs/cdirs/dune/users/${USER}/blip
 LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}/data
 
