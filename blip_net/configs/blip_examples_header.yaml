@@ -1,0 +1,56 @@
+module:
+  module_name:  'blip_examples_tree'
+  module_type:  ['blip_net']
+  module_mode:  ['evaluate_merge_tree']
+  gpu:          true
+  gpu_device:   0
+  verbose:      false
+
+dataset:
+  process_simulation: false
+  simulation_type:    'LArSoft'
+  simulation_folder:  ""
+  simulation_files:   []
+
+  # ---- Blip ----
+  dataset_type:   "view_tree"
+  dataset_folder: "/local_data/data/"
+  dataset_files:  [
+    "single_capture_gamma_4.745.1/tpc2.npz",
+  ]
+  view:           2
+  positions:      ['channel', 'tdc', 'adc']
+  features:       ['adc']
+  classes:        ['particle', 'physics']
+  labels:         []
+  clusters:       []
+  hits:           []
+
+  root: '.'
+  position_normalization:   []
+  features_normalization:   []
+  class_weights:  []
+  sample_weights: []
+
+  dbscan_min_samples: 6
+  dbscan_eps:         500.0
+  cluster_positions:  ["channel", "tdc"]
+  cluster_category_type:  "classification"
+
+  # We only want to cluster shapes which are blips
+  classes_mask: []
+  labels_mask:  []
+  skip_processing:  false
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
+
+loader:
+  loader_type:      "minkowski"
+  batch_size:       64
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+

@@ -9,6 +9,8 @@ module:
   verbose:      True
 
 linear_evaluation:
+  model_directory: "/local_scratch/swefjvaiwoejfaovewijivawjefaoijefv"
   models: [
+    "/iteration_0_0/models/BlipGraph_trained_params.ckpt"
   ]
   epochs: 50

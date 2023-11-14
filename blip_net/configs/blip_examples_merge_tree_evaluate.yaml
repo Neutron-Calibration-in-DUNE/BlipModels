@@ -1,0 +1,6 @@
+load_config: '/local_blip/BlipModels/blip_net/configs/blip_examples_header.yaml'
+
+merge_tree:
+  blip_graph: '/local_data/BlipGraph_trained_params.ckpt'
+  progress_bar: true
+  rewrite_bar:  false

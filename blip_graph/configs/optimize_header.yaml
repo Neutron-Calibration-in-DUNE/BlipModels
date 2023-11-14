@@ -105,6 +105,7 @@ loader:
   num_workers:      4
 
 training:
+  iterations:   1
   epochs:       100
   checkpoint:   25
   progress_bar: "all"     # train, validation, test, all
@@ -113,6 +114,14 @@ training:
   no_timing:    true      # wether to keep timing/memory info in callback
   skip_metrics: true      # wether to skip metrics except for testing sets
   seed:         0
+
+model_analyzer:
+  ContrastiveModelAnalyzer:
+    dataset_type: "test"
+    layers:       []
+    outputs:      ["reductions"]
+    perplexities: [5,10,25,50]
+    eps_values:   [25,50]
 
 criterion:
   CrossEntropyLoss:
@@ -127,7 +136,7 @@ criterion:
     targets:  ["projection_head"]
     outputs:  ["projection_head"]
 
-metrics:
+metrics: 
   ConfusionMatrixMetric:
     target_type:  "classes"
     when_to_compute:  "test"
