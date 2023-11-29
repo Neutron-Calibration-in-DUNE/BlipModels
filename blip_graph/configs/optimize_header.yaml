@@ -115,6 +115,9 @@ training:
   skip_metrics: true      # wether to skip metrics except for testing sets
   seed:         0
 
+linear_evaluation:
+  epochs: 50
+
 model_analyzer:
   ContrastiveModelAnalyzer:
     dataset_type: "test"
