@@ -1,4 +1,4 @@
-load_config: '/local_blip/blip_graph/configs/optimize_header.yaml'
+load_config: '/workspace/BlipModels/blip_graph/configs/optimize_header.yaml'
 
 hyper_parameters:
   iterations: 1
@@ -7,10 +7,25 @@ hyper_parameters:
     BlipGraph:
       embedding:
         embedding_1:
+          fps_ratio:      [0.10, 0.25, 0.5, 0.75]
+          max_number_neighbors: [5,10,25]
+          add_self_loops:       [true, false]
         embedding_2:
+          fps_ratio:      [0.10, 0.25, 0.5, 0.75]
+          max_number_neighbors: [5,10,25]
+          add_self_loops:       [true, false]
         embedding_3:
+          fps_ratio:      [0.10, 0.25, 0.5, 0.75]
+          max_number_neighbors: [5,10,25]
+          add_self_loops:       [true, false]
         embedding_4:
+          fps_ratio:      [0.10, 0.25, 0.5, 0.75]
+          max_number_neighbors: [5,10,25]
+          add_self_loops:       [true, false]
         embedding_5:
+          fps_ratio:      [0.10, 0.25, 0.5, 0.75]
+          max_number_neighbors: [5,10,25]
+          add_self_loops:       [true, false]
 
 model:
   model_type:       "single"  
@@ -30,18 +45,43 @@ model:
       number_of_augmentations:  5
     embedding:
       embedding_1:  
-        embedding_type: 'pointnet'
-      embedding_2:
-        embedding_type: 'pointnet'
-      embedding_3:
-        embedding_type: 'pointnet'
-      embedding_4:
-        embedding_type: 'pointnet'
-      embedding_5:
-        embedding_type: 'pointnet'
+        embedding_type:   'point_net_conv'
+        local_mlp_layers: [10, 25, 50]
+        fps_ratio:        0.5
+        cluster_radius:   0.25
+        max_number_neighbors: 5
+        add_self_loops:   true
+      embedding_2:  
+        embedding_type:   'point_net_conv'
+        local_mlp_layers: [10, 25, 50]
+        fps_ratio:        0.5
+        cluster_radius:   0.25
+        max_number_neighbors: 5
+        add_self_loops:   true
+      embedding_3:  
+        embedding_type:   'point_net_conv'
+        local_mlp_layers: [10, 25, 50]
+        fps_ratio:        0.5
+        cluster_radius:   0.25
+        max_number_neighbors: 5
+        add_self_loops:   true
+      embedding_4:  
+        embedding_type:   'point_net_conv'
+        local_mlp_layers: [10, 25, 50]
+        fps_ratio:        0.5
+        cluster_radius:   0.25
+        max_number_neighbors: 5
+        add_self_loops:   true
+      embedding_5:  
+        embedding_type:   'point_net_conv'
+        local_mlp_layers: [10, 25, 50]
+        fps_ratio:        0.5
+        cluster_radius:   0.25
+        max_number_neighbors: 5
+        add_self_loops:   true
     reduction:
       reduction_type: 'max_pool'
       linear_output:  512
     classification:
       mlp_output_layers:    [512, 256, 128, 64, 32]
-      out_channels:         [28, 23]
+      out_channels:         [28, 39]

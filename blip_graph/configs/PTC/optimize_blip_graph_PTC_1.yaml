@@ -1,4 +1,4 @@
-load_config: '/local_blip/blip_graph/configs/optimize_header.yaml'
+load_config: '/workspace/BlipModels/blip_graph/configs/optimize_header.yaml'
 
 hyper_parameters:
   iterations: 1
@@ -7,6 +7,7 @@ hyper_parameters:
     BlipGraph:
       embedding:
         embedding_1:
+          fps_ratio:  [0.10,0.25]
 
 model:
   model_type:       "single"  
@@ -27,9 +28,15 @@ model:
     embedding:
       embedding_1:  
         embedding_type: 'point_transformer_conv'
+        pos_nn_layers:  [10,25,10]
+        attn_nn_layers: [10,25,10]
+        fps_ratio:      0.25
+        cluster_radius: 0.25
+        max_number_neighbors: 5
+        add_self_loops: true
     reduction:
       reduction_type: 'max_pool'
       linear_output:  512
     classification:
       mlp_output_layers:    [512, 256, 128, 64, 32]
-      out_channels:         [28, 23]
+      out_channels:         [28, 39]

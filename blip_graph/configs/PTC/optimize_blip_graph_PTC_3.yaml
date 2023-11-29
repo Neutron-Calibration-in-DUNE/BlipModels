@@ -1,4 +1,4 @@
-load_config: '/local_blip/blip_graph/configs/optimize_header.yaml'
+load_config: '/workspace/BlipModels/blip_graph/configs/optimize_header.yaml'
 
 hyper_parameters:
   iterations: 1
@@ -38,4 +38,4 @@ model:
       linear_output:  512
     classification:
       mlp_output_layers:    [512, 256, 128, 64, 32]
-      out_channels:         [28, 23]
+      out_channels:         [28, 39]
