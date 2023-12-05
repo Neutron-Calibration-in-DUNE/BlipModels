@@ -1,72 +1,19 @@
 # Test config file for Blip
 module:
   module_name:  'prep_data'
-  module_type:  ['data']
-  module_mode:  ['arrakis']
+  module_type:  ['arrakis']
+  module_mode:  ['larsoft_singles']
   gpu:          True
   gpu_device:   0
   verbose:      False
 
-dataset:
+arrakis:
     # ---- Arrakis ----
   # This section defines the 'arrakis.py' submodule which takes in
   # outputs from different Arrakis iterations and constructs a common dataset format
   # in .npz or .hdf5 files.
-  # If this is the first time processing the simulation output
-  process_simulation: True
-  simulation_type:    'LArSoft'
-  simulation_folder:  "/local_data/data/"
+  simulation_folder:  "/local_data/data/singles/"
   process_type:       ['wire_plane_point_cloud']
   simulation_files:   [
-    "single_capture_gamma_4.745.0.root",
-    "single_capture_gamma_4.745.1.root",
-    "single_capture_gamma_4.745.2.root",
-    "single_capture_gamma_4.745.3.root",
-    "single_capture_gamma_4.745.4.root",
-    "single_capture_gamma_3.365.0.root",
-    "single_capture_gamma_3.365.1.root",
-    "single_capture_gamma_3.365.2.root",
-    "single_capture_gamma_3.365.3.root",
-    "single_capture_gamma_3.365.4.root",
-    "single_capture_gamma_2.566.0.root",
-    "single_capture_gamma_2.566.1.root",
-    "single_capture_gamma_2.566.2.root",
-    "single_capture_gamma_2.566.3.root",
-    "single_capture_gamma_2.566.4.root",
-    "single_capture_gamma_1.186.0.root",
-    "single_capture_gamma_1.186.1.root",
-    "single_capture_gamma_1.186.2.root",
-    "single_capture_gamma_1.186.3.root",
-    "single_capture_gamma_1.186.4.root",
-    "single_capture_gamma_0.837.0.root",
-    "single_capture_gamma_0.837.1.root",
-    "single_capture_gamma_0.837.2.root",
-    "single_capture_gamma_0.837.3.root",
-    "single_capture_gamma_0.837.4.root",
-    "single_capture_gamma_0.516.0.root",
-    "single_capture_gamma_0.516.1.root",
-    "single_capture_gamma_0.516.2.root",
-    "single_capture_gamma_0.516.3.root",
-    "single_capture_gamma_0.516.4.root",
-    "single_capture_gamma_0.167.0.root",
-    "single_capture_gamma_0.167.1.root",
-    "single_capture_gamma_0.167.2.root",
-    "single_capture_gamma_0.167.3.root",
-    "single_capture_gamma_0.167.4.root",
-    "single_decay_ar39.0.root",
-    "single_decay_ar39.1.root",
-    "single_decay_ar39.2.root",
-    "single_decay_ar39.3.root",
-    "single_decay_ar39.4.root",
-    "single_decay_ar42.0.root",
-    "single_decay_ar42.1.root",
-    "single_decay_ar42.2.root",
-    "single_decay_ar42.3.root",
-    "single_decay_ar42.4.root",
-    "single_decay_kr85.0.root",
-    "single_decay_kr85.1.root",
-    "single_decay_kr85.2.root",
-    "single_decay_kr85.3.root",
-    "single_decay_kr85.4.root",
-    "single_decay_rn222.0.root"
+    "prod_pns_capture_gamma_474_5kevt_v3.root"
   ]

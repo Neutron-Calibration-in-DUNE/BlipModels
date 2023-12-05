@@ -49,6 +49,15 @@ model:
     reduction:
       reduction_type: 'max_pool'
       linear_output:  512
+      projection_head_layers:   [512, 1024, 512, 256]
+      projection_head_dropout:  0.1
+      projection_head_activation:  'LeakyReLU'
+      projection_head_activation_params:
+        negative_slope: 0.1
     classification:
-      mlp_output_layers:    [512, 256, 128, 64, 32]
+      mlp_output_layers:    [256, 128, 64, 32]
       out_channels:         [28, 39]
+      dropout:  0.1
+      activation: 'LeakyReLU'
+      activation_params:
+        negative_slope: 0.1

@@ -1,71 +1,65 @@
 module:
   module_name:  'optimize_blip_graph'
   module_type:  ['ml']
-  module_mode:  ['hyper_parameter_scan']
+  module_mode:  ['contrastive_training']
   gpu:          true
   gpu_device:   0
-  verbose:      false
+  verbose:      true
 
 dataset:
-  process_simulation: false
-  simulation_type:    'LArSoft'
-  simulation_folder:  ""
-  simulation_files:   []
-
-  # ---- Blip ----
   dataset_type:   "view_cluster"
   dataset_folder: "/local_data/data/"
   dataset_files:  [
     "single_capture_gamma_4.745.0/tpc2.npz",
-    "single_capture_gamma_4.745.1/tpc2.npz",
-    "single_capture_gamma_4.745.2/tpc2.npz",
-    "single_capture_gamma_4.745.3/tpc2.npz",
-    "single_capture_gamma_4.745.4/tpc2.npz",
+    # "single_capture_gamma_4.745.1/tpc2.npz",
+    # "single_capture_gamma_4.745.2/tpc2.npz",
+    # "single_capture_gamma_4.745.3/tpc2.npz",
+    # "single_capture_gamma_4.745.4/tpc2.npz",
     "single_capture_gamma_3.365.0/tpc2.npz",
-    "single_capture_gamma_3.365.1/tpc2.npz",
-    "single_capture_gamma_3.365.2/tpc2.npz",
-    "single_capture_gamma_3.365.3/tpc2.npz",
-    "single_capture_gamma_3.365.4/tpc2.npz",
+    # "single_capture_gamma_3.365.1/tpc2.npz",
+    # "single_capture_gamma_3.365.2/tpc2.npz",
+    # "single_capture_gamma_3.365.3/tpc2.npz",
+    # "single_capture_gamma_3.365.4/tpc2.npz",
     "single_capture_gamma_2.566.0/tpc2.npz",
-    "single_capture_gamma_2.566.1/tpc2.npz",
-    "single_capture_gamma_2.566.2/tpc2.npz",
-    "single_capture_gamma_2.566.3/tpc2.npz",
-    "single_capture_gamma_2.566.4/tpc2.npz",
+    # "single_capture_gamma_2.566.1/tpc2.npz",
+    # "single_capture_gamma_2.566.2/tpc2.npz",
+    # "single_capture_gamma_2.566.3/tpc2.npz",
+    # "single_capture_gamma_2.566.4/tpc2.npz",
     "single_capture_gamma_1.186.0/tpc2.npz",
-    "single_capture_gamma_1.186.1/tpc2.npz",
-    "single_capture_gamma_1.186.2/tpc2.npz",
-    "single_capture_gamma_1.186.3/tpc2.npz",
-    "single_capture_gamma_1.186.4/tpc2.npz",
+    # "single_capture_gamma_1.186.1/tpc2.npz",
+    # "single_capture_gamma_1.186.2/tpc2.npz",
+    # "single_capture_gamma_1.186.3/tpc2.npz",
+    # "single_capture_gamma_1.186.4/tpc2.npz",
     "single_capture_gamma_0.837.0/tpc2.npz",
-    "single_capture_gamma_0.837.1/tpc2.npz",
-    "single_capture_gamma_0.837.2/tpc2.npz",
-    "single_capture_gamma_0.837.3/tpc2.npz",
-    "single_capture_gamma_0.837.4/tpc2.npz",
-    "single_capture_gamma_0.516.0/tpc2.npz",
-    "single_capture_gamma_0.516.1/tpc2.npz",
-    "single_capture_gamma_0.516.2/tpc2.npz",
-    "single_capture_gamma_0.516.3/tpc2.npz",
+    # "single_capture_gamma_0.837.1/tpc2.npz",
+    # "single_capture_gamma_0.837.2/tpc2.npz",
+    # "single_capture_gamma_0.837.3/tpc2.npz",
+    # "single_capture_gamma_0.837.4/tpc2.npz",
+    # "single_capture_gamma_0.516.0/tpc2.npz",
+    # "single_capture_gamma_0.516.1/tpc2.npz",
+    # "single_capture_gamma_0.516.2/tpc2.npz",
+    # "single_capture_gamma_0.516.3/tpc2.npz",
     "single_capture_gamma_0.516.4/tpc2.npz",
     "single_capture_gamma_0.167.0/tpc2.npz",
-    "single_capture_gamma_0.167.1/tpc2.npz",
-    "single_capture_gamma_0.167.2/tpc2.npz",
-    "single_capture_gamma_0.167.3/tpc2.npz",
-    "single_capture_gamma_0.167.4/tpc2.npz",
+    # "single_capture_gamma_0.167.1/tpc2.npz",
+    # "single_capture_gamma_0.167.2/tpc2.npz",
+    # "single_capture_gamma_0.167.3/tpc2.npz",
+    # "single_capture_gamma_0.167.4/tpc2.npz",
     "single_decay_ar39.0/tpc2.npz",
-    "single_decay_ar39.1/tpc2.npz",
-    "single_decay_ar39.2/tpc2.npz",
-    "single_decay_ar39.3/tpc2.npz",
-    "single_decay_ar39.4/tpc2.npz",
+    # "single_decay_ar39.1/tpc2.npz",
+    # "single_decay_ar39.2/tpc2.npz",
+    # "single_decay_ar39.3/tpc2.npz",
+    # "single_decay_ar39.4/tpc2.npz",
     "single_decay_ar42.0/tpc2.npz",
-    "single_decay_ar42.1/tpc2.npz",
-    "single_decay_ar42.2/tpc2.npz",
-    "single_decay_ar42.3/tpc2.npz",
-    "single_decay_ar42.4/tpc2.npz",
+    # "single_decay_ar42.1/tpc2.npz",
+    # "single_decay_ar42.2/tpc2.npz",
+    # "single_decay_ar42.3/tpc2.npz",
+    # "single_decay_ar42.4/tpc2.npz",
     "single_decay_kr85.0/tpc2.npz",
-    "single_decay_kr85.1/tpc2.npz",
-    "single_decay_kr85.2/tpc2.npz",
-    "single_decay_kr85.3/tpc2.npz",
-    "single_decay_kr85.4/tpc2.npz",
+    # "single_decay_kr85.1/tpc2.npz",
+    # "single_decay_kr85.2/tpc2.npz",
+    # "single_decay_kr85.3/tpc2.npz",
+    # "single_decay_kr85.4/tpc2.npz",
     "single_decay_rn222.0/tpc2.npz"
   ]
   view:           2
@@ -116,7 +110,7 @@ training:
   seed:         0
 
 linear_evaluation:
-  epochs: 50
+  epochs: 25
 
 model_analyzer:
   ContrastiveModelAnalyzer:
