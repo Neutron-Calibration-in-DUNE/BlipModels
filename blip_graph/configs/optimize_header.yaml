@@ -7,6 +7,10 @@ module:
   verbose:      true
 
 dataset:
+  skip_processing:  false
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
   dataset_type:   "view_cluster"
   dataset_folder: "/local_data/data/"
   dataset_files:  [
@@ -70,7 +74,6 @@ dataset:
   clusters:       []
   hits:           []
 
-  root: '.'
   position_normalization:   []
   features_normalization:   []
   class_weights:  []
@@ -84,10 +87,6 @@ dataset:
   # We only want to cluster shapes which are blips
   classes_mask: ["topology"]
   labels_mask:  [["blip"]]
-  skip_processing:  false
-  transform:        null
-  pre_transform:    null
-  pre_filter:       null
 
 loader:
   loader_type:      "minkowski"
