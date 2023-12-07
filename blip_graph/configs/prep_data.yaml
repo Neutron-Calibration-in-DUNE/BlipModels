@@ -2,18 +2,19 @@
 module:
   module_name:  'prep_data'
   module_type:  ['arrakis']
-  module_mode:  ['larsoft_singles']
+  module_mode:  ['download']
   gpu:          True
   gpu_device:   0
-  verbose:      False
+  verbose:      True
 
 arrakis:
     # ---- Arrakis ----
   # This section defines the 'arrakis.py' submodule which takes in
   # outputs from different Arrakis iterations and constructs a common dataset format
   # in .npz or .hdf5 files.
+  experiment:         'protodune'
   download_data:      true
-  dataset:            'blip_singles'
+  download_dataset:   ['protodune_arrakis_blip_singles']
   simulation_folder:  "/local_data/data/singles/"
   process_type:       ['wire_plane_point_cloud']
   simulation_files:   [
