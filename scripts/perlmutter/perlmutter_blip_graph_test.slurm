@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -A dune                 # account to use for the job, '--account', '-A'
-#SBATCH -J example              # job name, '--job-name', '-J'
+#SBATCH -J blip_graph_test      # job name, '--job-name', '-J'
 #SBATCH -C gpu                  # type of job (constraint can be 'cpu' or 'gpu'), '--constraint', '-C'
 #SBATCH -q shared               # Jobs requiring 1 or 2 gpus should use the shared setting, all others use 'regular'
 #SBATCH -t 24:00:00             # amount of time requested for the job, '--time', 't'
@@ -18,5 +18,5 @@ LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
 shifter --image=docker:infophysics/blip:latest \
         --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data" \
-        ./perlmutter_test.sh
+        ./perlmutter_grlip_graph_test.sh
 

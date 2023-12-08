@@ -1,7 +1,7 @@
 load_config: '/local_blip/BlipModels/blip_graph/configs/optimize_header.yaml'
 
 hyper_parameters:
-  iterations: 25
+  iterations: 1
   search_type:  'grid'  # 'grid', 'random', 'bayes'
   model_parameters:
     BlipGraph:

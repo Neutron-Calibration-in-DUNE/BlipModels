@@ -13,7 +13,7 @@ dataset:
   pre_filter:       null
   view: 2
   dataset_type:   "wire_view_cluster"
-  dataset_folder: "/local_data/data/"
+  dataset_folder: "/local_data/"
   dataset_files:  [
     "single_capture_gamma_4.745.0/tpc2.npz",
     "single_capture_gamma_4.745.1/tpc2.npz",
@@ -100,7 +100,7 @@ loader:
 
 training:
   iterations:   1
-  epochs:       100
+  epochs:       10
   checkpoint:   25
   progress_bar: "all"     # train, validation, test, all
   rewrite_bar:      false # wether to leave bars after each epoch
