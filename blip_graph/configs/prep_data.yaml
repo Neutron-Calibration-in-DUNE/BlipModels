@@ -1,8 +1,8 @@
 # Test config file for Blip
 module:
   module_name:  'prep_data'
-  module_type:  ['arrakis']
-  module_mode:  ['larsoft']
+  module_type:  ['arrakis', 'dataset']
+  module_mode:  ['larsoft', 'dataset_prep']
   gpu:          True
   gpu_device:   0
   verbose:      True
@@ -70,3 +70,86 @@ arrakis:
     "single_decay_kr85.4.root",
     "single_decay_rn222.0.root"
   ]
+
+dataset:
+  skip_processing:  false
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
+  view: 2
+  dataset_type:   "wire_view_cluster"
+  dataset_folder: "/local_data/"
+  dataset_files:  [
+    "single_capture_gamma_4.745.0/tpc2.npz",
+    "single_capture_gamma_4.745.1/tpc2.npz",
+    "single_capture_gamma_4.745.2/tpc2.npz",
+    "single_capture_gamma_4.745.3/tpc2.npz",
+    "single_capture_gamma_4.745.4/tpc2.npz",
+    "single_capture_gamma_3.365.0/tpc2.npz",
+    "single_capture_gamma_3.365.1/tpc2.npz",
+    "single_capture_gamma_3.365.2/tpc2.npz",
+    "single_capture_gamma_3.365.3/tpc2.npz",
+    "single_capture_gamma_3.365.4/tpc2.npz",
+    "single_capture_gamma_2.566.0/tpc2.npz",
+    "single_capture_gamma_2.566.1/tpc2.npz",
+    "single_capture_gamma_2.566.2/tpc2.npz",
+    "single_capture_gamma_2.566.3/tpc2.npz",
+    "single_capture_gamma_2.566.4/tpc2.npz",
+    "single_capture_gamma_1.186.0/tpc2.npz",
+    "single_capture_gamma_1.186.1/tpc2.npz",
+    "single_capture_gamma_1.186.2/tpc2.npz",
+    "single_capture_gamma_1.186.3/tpc2.npz",
+    "single_capture_gamma_1.186.4/tpc2.npz",
+    "single_capture_gamma_0.837.0/tpc2.npz",
+    "single_capture_gamma_0.837.1/tpc2.npz",
+    "single_capture_gamma_0.837.2/tpc2.npz",
+    "single_capture_gamma_0.837.3/tpc2.npz",
+    "single_capture_gamma_0.837.4/tpc2.npz",
+    "single_capture_gamma_0.516.0/tpc2.npz",
+    "single_capture_gamma_0.516.1/tpc2.npz",
+    "single_capture_gamma_0.516.2/tpc2.npz",
+    "single_capture_gamma_0.516.3/tpc2.npz",
+    "single_capture_gamma_0.516.4/tpc2.npz",
+    "single_capture_gamma_0.167.0/tpc2.npz",
+    "single_capture_gamma_0.167.1/tpc2.npz",
+    "single_capture_gamma_0.167.2/tpc2.npz",
+    "single_capture_gamma_0.167.3/tpc2.npz",
+    "single_capture_gamma_0.167.4/tpc2.npz",
+    "single_decay_ar39.0/tpc2.npz",
+    "single_decay_ar39.1/tpc2.npz",
+    "single_decay_ar39.2/tpc2.npz",
+    "single_decay_ar39.3/tpc2.npz",
+    "single_decay_ar39.4/tpc2.npz",
+    "single_decay_ar42.0/tpc2.npz",
+    "single_decay_ar42.1/tpc2.npz",
+    "single_decay_ar42.2/tpc2.npz",
+    "single_decay_ar42.3/tpc2.npz",
+    "single_decay_ar42.4/tpc2.npz",
+    "single_decay_kr85.0/tpc2.npz",
+    "single_decay_kr85.1/tpc2.npz",
+    "single_decay_kr85.2/tpc2.npz",
+    "single_decay_kr85.3/tpc2.npz",
+    "single_decay_kr85.4/tpc2.npz",
+    "single_decay_rn222.0/tpc2.npz"
+  ]
+  variables:
+    positions:      ['channel', 'tdc', 'adc']
+    features:       ['adc']
+    classes:        ['particle', 'physics']
+    labels:         []
+    clusters:       []
+    hits:           []
+    position_normalization:   []
+    features_normalization:   []
+    classes_mask: ["topology"]
+    labels_mask:  [["blip"]]
+
+  weights:
+    class_weights:  []
+    sample_weights: False
+
+  clustering:
+    dbscan_min_samples: 6
+    dbscan_eps:         500.0
+    cluster_positions:  ["channel", "tdc"]
+    cluster_category_type:  "classification"  
