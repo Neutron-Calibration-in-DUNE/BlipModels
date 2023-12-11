@@ -1,9 +1,9 @@
 #!/bin/bash
-cd /workspace
+cd /local_scratch
 
-prep_data_config="/workspace/BlipModels/blip_graph/config/prep_data.yaml"
-optimization_config="/workspace/BlipModels/blip_graph_configs/DEC/optimize_blip_graph_DEC_1.yaml"
-optimization_script="/workspace/BlipModels/scripts/perlmutter_blip_graph_test.slurm"
+prep_data_config="/local_blip/BlipModels/blip_graph/configs/prep_data.yaml"
+optimization_config="/local_blip/BlipModels/blip_graph_configs/DEC/optimize_blip_graph_DEC_1.yaml"
+optimization_script="/local_blip/BlipModels/scripts/perlmutter_blip_graph_test.slurm"
 hyper_parameter_file="/local_scratch/hyper_parameter_data.csv"
 
 # download data to /local_data/ and process it
