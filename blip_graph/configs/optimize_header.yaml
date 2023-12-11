@@ -22,7 +22,7 @@ loader:
 
 training:
   iterations:   1
-  epochs:       10
+  epochs:       2
   checkpoint:   25
   progress_bar: "all"     # train, validation, test, all
   rewrite_bar:      false # wether to leave bars after each epoch
@@ -32,15 +32,15 @@ training:
   seed:         0
 
 linear_evaluation:
-  epochs: 25
+  epochs: 2
 
 model_analyzer:
   ContrastiveModelAnalyzer:
     dataset_type: "test"
     layers:       []
     outputs:      ["reductions"]
-    perplexities: [5,10,25,50]
-    eps_values:   [25,50]
+    perplexities: [25]
+    eps_values:   [25]
 
 criterion:
   CrossEntropyLoss:

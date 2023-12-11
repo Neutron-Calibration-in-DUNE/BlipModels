@@ -11,6 +11,8 @@
 #SBATCH --gpus-per-node=1       # number of gpus per node.
 #SBATCH --gpu-bind=none         # comment this out if you don't want all gpus visible to each task
 
+config_file=$1
+
 LOCAL_SCRATCH=/pscratch/sd/${USER:0:1}/${USER}
 LOCAL_BLIP=/global/cfs/cdirs/dune/users/${USER}
 LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}
@@ -18,5 +20,5 @@ LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
 shifter --image=docker:infophysics/blip:latest \
         --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data" \
-        ./perlmutter_grlip_graph_test.sh
+        ./perlmutter_blip_graph_test.sh config_file
 
