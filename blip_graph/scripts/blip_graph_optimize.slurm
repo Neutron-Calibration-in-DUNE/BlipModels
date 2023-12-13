@@ -23,7 +23,7 @@ LOCAL_DATA=/global/cfs/cdirs/dune/users/${USER}
 # use that hyper_parameter_file as input to the optimize_blip_graph.sh script
 # along with the task_id
 
-hyper_parameter_file="/local_scratch/hyper_parameter_data.csv"
+hyper_parameter_file="/pscratch/sd/${USER:0:1}/${USER}/hyper_parameter_data.csv"
 
 # read in the hyper_parameter file
 if [ ! -e "$hyper_parameter_file" ]; then
