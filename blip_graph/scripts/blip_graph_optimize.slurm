@@ -31,20 +31,9 @@ if [ ! -e "$hyper_parameter_file" ]; then
     exit 1
 fi
 
-while IFS=',' read -r hyper_parameter_config; do
-    # check that line is not empty
-    if [ -n "$hyper_parameter_config" ]; then
-        sbatch --job-name="$hyper_parameter_config" "$optimization_script" "$hyper_parameter_config"
-    fi
-done < "$hyper_parameter_file"
+hyper_parameter_config=$(head -n $SLURM_ARRAY_TASK_ID hyper_parameter_file | tail -1)
 
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
 shifter --image=docker:infophysics/blip:latest \
         --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data" \
-        ./perlmutter_optimize_blip_graph.sh
-
-
-
-
-
-
+        ./blip_graph_optimize.sh $hyper_parameter_config
