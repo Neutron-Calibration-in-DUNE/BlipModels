@@ -31,7 +31,7 @@ if [ ! -e "$hyper_parameter_file" ]; then
     exit 1
 fi
 
-hyper_parameter_config=$(head -n $((SLURM_ARRAY_TASK_ID+1)) "$hyper_parameter_file" | tail -1)
+hyper_parameter_config=$(head -n $((SLURM_ARRAY_TASK_ID+1)) "$hyper_parameter_file" | tail -1 | tr -d '\r')"/hyper_parameter_config.yaml"
 
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
 shifter --image=docker:infophysics/blip:latest \
