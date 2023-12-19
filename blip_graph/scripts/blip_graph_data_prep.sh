@@ -8,4 +8,4 @@ optimization_config="/local_blip/BlipModels/blip_graph/configs/DEC/optimize_blip
 blip "$prep_data_config"
 
 # generate hyper-parameter configs
-create_hyper_parameter_configs "$optimization_config" -hyper_parameter_location='${LOCAL_BLIP}'
+create_hyper_parameter_configs "$optimization_config" -hyper_parameter_location=${LOCAL_BLIP}
