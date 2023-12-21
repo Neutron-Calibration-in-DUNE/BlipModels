@@ -1,0 +1,133 @@
+module:
+  module_name:  'optimize_blip_segmentation'
+  module_type:  ['ml']
+  module_mode:  ['training']
+  gpu:          true
+  gpu_device:   0
+  verbose:      true
+
+dataset:
+  dataset_params:   ""
+  dataset_type:     "wire_view_cluster"
+  skip_processing:  true
+
+loader:
+  loader_type:      "minkowski"
+  batch_size:       64
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+
+training:
+  iterations:   1
+  epochs:       100
+  checkpoint:   25
+  progress_bar: "all"     # train, validation, test, all
+  rewrite_bar:      false # wether to leave bars after each epoch
+  save_predictions: false # wether to save network outputs in original file
+  no_timing:    true      # wether to keep timing/memory info in callback
+  skip_metrics: true      # wether to skip metrics except for testing sets
+  seed:         0
+
+model:
+  model_type:       "single"    
+  BlipSegmentation:
+    in_channels:      1
+    out_channels:     [5]
+    classifications:  ["topology"]
+    filtrations:      [64, 128, 256, 512]
+    residual:         true
+    sparse_conv_params:
+      kernel_size:     3
+      stride:     1
+      dilation:   1
+      activation: prelu
+      dimension:  3
+      batch_norm: True
+      num_of_convs: 2
+      dropout:    0.1
+    conv_transpose_params:
+      kernel_size:     2
+      stride:     2
+      dilation:   1
+      dimension:  3
+    max_pooling_params:
+      kernel_size:     2
+      stride:     2
+      dilation:   1
+      dimension:  3
+
+criterion:
+  CrossEntropyLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+
+metrics: 
+  ConfusionMatrixMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  AdjustedRandIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  AUROCMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  DiceScoreMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  JaccardIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  AveragePrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  PrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+  RecallMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["topology"]
+    outputs:  ["topology"]  
+    augmentations:  0
+
+callbacks:
+  LossCallback:
+  MetricCallback:
+    skip_metrics: true
+  ConfusionMatrixCallback:
+    skip_metrics: true
+
+optimizer:
+  optimizer_type: "Adam"
+  learning_rate:  0.01
+  betas:          [0.9, 0.999]
+  epsilon:        1e-08
+  weight_decay:   0.001
+  momentum:       0.9

@@ -1,0 +1,36 @@
+# Test config file for Blip
+module:
+  module_name:  'prep_data'
+  module_type:  ['dataset']
+  module_mode:  ['dataset_prep']
+  gpu:          True
+  gpu_device:   0
+  verbose:      True
+
+dataset:
+  skip_processing:  false
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
+  view: 2
+  dataset_type:   "tpc"
+  dataset_folder: "/local_data/"
+  dataset_files:  [
+    "test.npz"
+  ]
+  variables:
+    positions:      ['x', 'y', 'z']
+    features:       []
+    classes:        ['particle', 'topology']
+    labels:         []
+    clusters:       []
+    hits:           []
+    position_normalization:   []
+    features_normalization:   []
+    classes_mask: []
+    labels_mask:  [[]]
+    voxelization: [1, 1, 1]
+
+  weights:
+    class_weights:  []
+    sample_weights: False

@@ -38,6 +38,7 @@ while IFS=',' read -r hyper_parameter_config; do
     fi
 done < "$hyper_parameter_file"
 
+
 setfacl -m u:nobody:x /global/cfs/cdirs/dune/users/${USER}
 shifter --image=docker:infophysics/blip:latest \
         --volume="${LOCAL_SCRATCH}:/local_scratch;${LOCAL_BLIP}:/local_blip;${LOCAL_DATA}:/local_data" \
