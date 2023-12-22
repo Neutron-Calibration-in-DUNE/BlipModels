@@ -22,7 +22,7 @@ loader:
 
 training:
   iterations:   1
-  epochs:       2
+  epochs:       500
   checkpoint:   25
   progress_bar: "all"     # train, validation, test, all
   rewrite_bar:      false # wether to leave bars after each epoch
@@ -32,7 +32,7 @@ training:
   seed:         0
 
 linear_evaluation:
-  epochs: 2
+  epochs: 50
 
 model_analyzer:
   ContrastiveModelAnalyzer:

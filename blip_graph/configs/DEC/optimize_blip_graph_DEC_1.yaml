@@ -11,6 +11,7 @@ hyper_parameters:
           aggregation:          ['max', 'mean', 'sum']
           embedding_mlp: 
             layers: [[5,10,25,10],[10,25,50,25],[25,50,100,25]]
+            dropout:  [0.1,0.01,0.05]
 
 model:
   model_type:       "single"  
