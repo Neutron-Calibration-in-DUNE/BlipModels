@@ -8,12 +8,12 @@ module:
 
 dataset:
   dataset_params:   ""
-  dataset_type:     "wire_view_cluster"
+  dataset_type:     "tpc"
   skip_processing:  true
 
 loader:
   loader_type:      "minkowski"
-  batch_size:       64
+  batch_size:       16
   test_split:       0.1
   test_seed:        42
   validation_split: 0.3
@@ -43,18 +43,18 @@ model:
       kernel_size:     3
       stride:     1
       dilation:   1
-      activation: prelu
+      activation: "prelu"
       dimension:  3
       batch_norm: True
       num_of_convs: 2
       dropout:    0.1
     conv_transpose_params:
-      kernel_size:     2
+      kernel_size: 2
       stride:     2
       dilation:   1
       dimension:  3
     max_pooling_params:
-      kernel_size:     2
+      kernel_size: 2
       stride:     2
       dilation:   1
       dimension:  3

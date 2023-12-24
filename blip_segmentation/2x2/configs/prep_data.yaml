@@ -12,11 +12,12 @@ dataset:
   transform:        null
   pre_transform:    null
   pre_filter:       null
-  view: 2
   dataset_type:   "tpc"
   dataset_folder: "/local_data/"
   dataset_files:  [
-    "test.npz"
+    "MiniRun4_1E19_RHC.flow.00000.FLOW.arrakis_nd.npz",
+    "MiniRun4_1E19_RHC.flow.00001.FLOW.arrakis_nd.npz",
+    "MiniRun4_1E19_RHC.flow.00002.FLOW.arrakis_nd.npz"
   ]
   variables:
     positions:      ['x', 'y', 'z']
