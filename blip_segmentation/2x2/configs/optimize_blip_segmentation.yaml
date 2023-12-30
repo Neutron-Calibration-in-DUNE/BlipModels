@@ -5,6 +5,7 @@ module:
   gpu:          true
   gpu_device:   0
   verbose:      true
+  debug:        true
 
 dataset:
   dataset_params:   ""
@@ -12,7 +13,9 @@ dataset:
   skip_processing:  true
 
 loader:
-  loader_type:      "minkowski"
+  loader_type:          "minkowski"
+  quantization_mode:    "random_subsample"
+  minkowski_algorithm:  "speed_optimized"
   batch_size:       16
   test_split:       0.1
   test_seed:        42
