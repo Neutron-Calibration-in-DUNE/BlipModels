@@ -9,6 +9,7 @@ module:
 
 dataset:
   skip_processing:  false
+  skip_undefined:   true
   transform:        null
   pre_transform:    null
   pre_filter:       null
@@ -34,7 +35,7 @@ dataset:
   variables:
     positions:      ['x', 'y', 'z']
     features:       []
-    classes:        ['particle', 'topology']
+    classes:        ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
     labels:         []
     clusters:       []
     hits:           []

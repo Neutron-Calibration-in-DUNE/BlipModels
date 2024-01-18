@@ -1,0 +1,51 @@
+module:
+  module_name:  'optimize_blip_segmentation'
+  module_type:  ['nar_inelastic']
+  module_mode:  ['arrakis']
+  gpu:          true
+  gpu_device:   0
+  verbose:      true
+  debug:        true
+
+dataset:
+  dataset_params:   ""
+  dataset_type:     "tpc"
+  skip_processing:  true
+
+loader:
+  loader_type:          "minkowski"
+  quantization_mode:    "random_subsample"
+  minkowski_algorithm:  "speed_optimized"
+  batch_size:       16
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+
+model:
+  model_type:       "single"    
+  BlipSegmentation:
+    in_channels:      1
+    classifications:  ['topology', 'physics_micro', 'physics_meso']
+    filtrations:      [64, 128, 256, 512]
+    residual:         true
+    sparse_conv_params:
+      kernel_size:     3
+      stride:     1
+      dilation:   1
+      activation: "leaky_relu"
+      dimension:  3
+      batch_norm: True
+      num_of_convs: 2
+      dropout:    0.1
+    conv_transpose_params:
+      kernel_size: 2
+      stride:     2
+      dilation:   1
+      dimension:  3
+    max_pooling_params:
+      kernel_size: 2
+      stride:     2
+      dilation:   1
+      dimension:  3
