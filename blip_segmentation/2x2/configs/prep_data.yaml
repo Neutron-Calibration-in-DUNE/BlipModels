@@ -30,5 +30,5 @@ dataset:
     voxelization: [1, 1, 1]
 
   weights:
-    class_weights:  []
+    class_weights:  ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
     sample_weights: False
