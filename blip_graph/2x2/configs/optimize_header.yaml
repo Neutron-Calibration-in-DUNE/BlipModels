@@ -1,0 +1,123 @@
+module:
+  module_name:  'optimize_blip_graph'
+  module_type:  ['ml']
+  module_mode:  ['contrastive_training']
+  gpu:          true
+  gpu_device:   0
+  verbose:      true
+
+dataset:
+  dataset_params:   ""
+  dataset_type:     "tpc_cluster"
+  skip_processing:  true
+
+loader:
+  loader_type:      "minkowski"
+  quantization_mode:    "random_subsample"
+  minkowski_algorithm:  "speed_optimized"
+  batch_size:       64
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+
+training:
+  iterations:   1
+  epochs:       500
+  checkpoint:   25
+  progress_bar: "all"     # train, validation, test, all
+  rewrite_bar:      false # wether to leave bars after each epoch
+  save_predictions: false # wether to save network outputs in original file
+  no_timing:    true      # wether to keep timing/memory info in callback
+  skip_metrics: true      # wether to skip metrics except for testing sets
+  seed:         0
+
+linear_evaluation:
+  epochs: 50
+
+model_analyzer:
+  ContrastiveModelAnalyzer:
+    dataset_type: "test"
+    layers:       []
+    outputs:      ["reductions"]
+    perplexities: [25]
+    eps_values:   [25]
+
+criterion:
+  CrossEntropyLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  NTXEntropyLoss:
+    alpha:  1.0
+    target_type:  "augment_batch"
+    targets:  ["projection_head"]
+    outputs:  ["projection_head"]
+
+metrics: 
+  ConfusionMatrixMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  AdjustedRandIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  AUROCMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  DiceScoreMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  JaccardIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  AveragePrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  PrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+  RecallMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
+    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    augmentations:  5
+
+callbacks:
+  LossCallback:
+  MetricCallback:
+    skip_metrics: true
+  ConfusionMatrixCallback:
+    skip_metrics: true
+
+optimizer:
+  optimizer_type: "Adam"
+  learning_rate:  0.01
+  betas:          [0.9, 0.999]
+  epsilon:        1e-08
+  weight_decay:   0.001
+  momentum:       0.9

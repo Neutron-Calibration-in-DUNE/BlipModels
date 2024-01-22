@@ -13,15 +13,15 @@ dataset:
   transform:        null
   pre_transform:    null
   pre_filter:       null
-  dataset_type:   "tpc"
+  dataset_type:   "tpc_cluster"
   dataset_folder: "/local_data/"
   dataset_files:  "all"
   variables:
     positions:      ['x', 'y', 'z']
     features:       []
-    classes:        ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    classes:        ['particle', 'topology', 'physics_micro', 'physics_meso']
     labels:         []
-    clusters:       ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    clusters:       ['particle', 'topology', 'physics_micro', 'physics_meso']
     hits:           []
     merge_tree:     false
     position_normalization:   []
@@ -31,6 +31,11 @@ dataset:
     voxelization: [1, 1, 1]
 
   weights:
-    class_weights:  ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    class_weights:  ['particle', 'topology', 'physics_micro', 'physics_meso']
     sample_weights: False
   
+  clustering:
+    cluster_method:     "physics_meso"
+    cluster_positions:  ['x', 'y', 'z']
+    cluster_category_type:  "classification" 
+    normalize_cluster:  true
