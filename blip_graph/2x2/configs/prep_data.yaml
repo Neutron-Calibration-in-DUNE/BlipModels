@@ -1,8 +1,8 @@
 # Test config file for Blip
 module:
   module_name:  'prep_data'
-  module_type:  ['dataset']
-  module_mode:  ['dataset_prep']
+  module_type:  ['dataset', 'analysis']
+  module_mode:  ['dataset_prep', 'pion']
   gpu:          True
   gpu_device:   0
   verbose:      True
@@ -40,3 +40,18 @@ dataset:
     cluster_category_type:  "classification" 
     normalize_cluster:  true
     make_gifs:          true
+
+loader:
+  loader_type:      "minkowski"
+  quantization_mode:    "random_subsample"
+  minkowski_algorithm:  "speed_optimized"
+  batch_size:       64
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+
+analysis:
+  PurityAnalyzer:
+    analyzer_modes: ["mc_truth", "ml", "data"]

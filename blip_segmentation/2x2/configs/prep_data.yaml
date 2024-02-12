@@ -1,8 +1,8 @@
 # Test config file for Blip
 module:
   module_name:  'prep_data'
-  module_type:  ['dataset']
-  module_mode:  ['dataset_prep']
+  module_type:  ['dataset', 'analysis']
+  module_mode:  ['dataset_prep', '']
   gpu:          True
   gpu_device:   0
   verbose:      True
@@ -19,18 +19,34 @@ dataset:
   variables:
     positions:      ['x', 'y', 'z']
     features:       []
-    classes:        ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    classes:        ['topology']
     labels:         []
-    clusters:       ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    clusters:       []
     hits:           []
     merge_tree:     false
     position_normalization:   []
     features_normalization:   []
-    classes_mask: ["topology"]
-    labels_mask:  [["blip"]]
+    classes_mask: []
+    labels_mask:  []
     voxelization: [1, 1, 1]
 
   weights:
-    class_weights:  ['particle', 'topology', 'physics_micro', 'physics_meso', 'physics_macro']
+    class_weights:  ['topology']
     sample_weights: False
+
+loader:
+  loader_type:      "minkowski"
+  quantization_mode:    "random_subsample"
+  minkowski_algorithm:  "speed_optimized"
+  batch_size:       64
+  test_split:       0.1
+  test_seed:        42
+  validation_split: 0.3
+  validation_seed:  42
+  num_workers:      4
+
+analysis:
+  nArInelasticAnalyzer:
+    analyzer_modes: ["mc_truth"]
+  SegmentationAnalyzer:
   

@@ -38,8 +38,8 @@ model:
   model_type:       "single"    
   BlipSegmentation:
     in_channels:      1
-    classifications:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    filtrations:      [64, 128, 256, 512]
+    classifications:  ['topology']
+    filtrations:      [32, 64]
     residual:         true
     sparse_conv_params:
       kernel_size:     3
@@ -65,58 +65,58 @@ criterion:
   CrossEntropyLoss:
     alpha:    1.0
     target_type:  "classes"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
 
 metrics: 
   ConfusionMatrixMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   AdjustedRandIndexMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   AUROCMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   DiceScoreMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   JaccardIndexMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   AveragePrecisionMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   PrecisionMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
   RecallMetric:
     target_type:  "classes"
     when_to_compute:  "test"
-    targets:  ['particle', 'topology', 'physics_micro', 'physics_meso']
-    outputs:  ['particle', 'topology', 'physics_micro', 'physics_meso']  
+    targets:  ['topology']
+    outputs:  ['topology']  
     augmentations:  0
 
 callbacks:
