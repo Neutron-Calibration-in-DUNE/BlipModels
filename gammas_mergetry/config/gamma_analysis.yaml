@@ -1,0 +1,160 @@
+module:
+  module_name:  'gammas_cm'
+  module_type:  ['MergeTreeModule']
+  module_mode:  ['arrakis']
+  # custom_module_file: "/home/laura/Analysis_Laura/BlipModels/pion/pion_analysis.py"
+  custom_module_file: "../pion/pion_analysis.py"
+  gpu:          True
+  gpu_device:   0
+  verbose:      True
+
+dataset:
+  # ---- Arrakis ----
+  # This section defines the 'arrakis.py' submodule which takes in
+  # outputs from different Arrakis iterations and constructs a common dataset format
+  # in .npz or .hdf5 files.
+  # If this is the first time processing the simulation output
+  process_simulation: False
+  simulation_type:    'LArSoft'
+  simulation_folder:  "data/"
+  # simulation_folder:  "../data/"
+  process_type: ["wire_plane_point_cloud",'energy_deposit_point_cloud']
+  # simulation_files:   [
+  #   "single_gammas_0.516MeV_2079229.0.root",
+  #   "single_gammas_0.516MeV_2079229.1.root"
+  # ]
+
+  simulation_files: ["prod_pns_SingleGammas_Arrakis_0.516MeV_5kevt_v3.root"]
+  skip_processing: False
+
+  # ---- Blip ----
+  dataset_type: "view_cluster"
+  dataset_folder: "data/"
+  dataset_files: [ "prod_pns_SingleGammas_Arrakis_0.516MeV_5kevt_v3/tpc2.npz"]
+  
+  view:           2
+  positions:      ['channel', 'tdc', 'adc']
+  features:       ['adc']
+  classes:        ['particle', 'physics']
+  labels:         []
+  clusters:       []
+  hits:           []
+
+  root: '.'
+  position_normalization:   []
+  features_normalization:   []
+  class_weights:  []
+  sample_weights: []
+
+  dbscan_min_samples: 6
+  dbscan_eps:         500.0
+  cluster_positions:  ["channel", "tdc"]
+  cluster_category_type:  "classification"
+
+  # We only want to cluster shapes which are blips
+  classes_mask: ["topology"]
+  labels_mask:  [["blip"]]
+  skip_processing:  false
+  transform:        null
+  pre_transform:    null
+  pre_filter:       null
+  
+
+  # merge_tree
+
+loader:
+  batch_size:       8
+  test_split:       0.1
+  test_seed:        100
+  validation_split: 0.2
+  validation_seed:  101
+  num_workers:      4
+  sparse:           True
+
+training:
+  epochs:       100
+  checkpoint:   25
+  progress_bar: "all"     # train, validation, test, all
+  rewrite_bar:      false # wether to leave bars after each epoch
+  save_predictions: false # wether to save network outputs in original file
+  no_timing:    true      # wether to keep timing/memory info in callback
+  skip_metrics: true      # wether to skip metrics except for testing sets
+  seed:         0
+
+criterion:
+  CrossEntropyLoss:
+    alpha:    1.0
+    target_type:  "classes"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  NTXEntropyLoss:
+    alpha:  1.0
+    target_type:  "augment_batch"
+    targets:  ["projection_head"]
+    outputs:  ["projection_head"]
+
+metrics:
+  ConfusionMatrixMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AdjustedRandIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AUROCMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  DiceScoreMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  JaccardIndexMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  AveragePrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  PrecisionMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+  RecallMetric:
+    target_type:  "classes"
+    when_to_compute:  "test"
+    targets:  ["particle", "physics"]
+    outputs:  ["particle", "physics"]  
+    augmentations:  5
+
+callbacks:
+  LossCallback:
+  MetricCallback:
+    skip_metrics: true
+  ConfusionMatrixCallback:
+    skip_metrics: true
+
+optimizer:
+  optimizer_type: "Adam"
+  learning_rate:  0.01
+  betas:          [0.9, 0.999]
+  epsilon:        1e-08
+  weight_decay:   0.001
+  momentum:       0.9
